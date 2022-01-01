@@ -17,6 +17,11 @@ public class Panel : MonoBehaviour
 	private Tweener m_canvasGroupTween;
 	public Type type;
 
+	void OnDestroy()
+	{
+		m_canvasGroupTween?.Kill();
+	}
+
 	public virtual Panel OpenPanel ( bool _fade )
 	{
 		gameObject.SetActive(true);
