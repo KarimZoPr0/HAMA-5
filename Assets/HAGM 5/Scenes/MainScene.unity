@@ -602,7 +602,7 @@ MonoBehaviour:
   m_soundAudioSource: {fileID: 621700547}
   m_audioList:
   - name: MainTheme
-    audioClip: {fileID: 8300000, guid: 696103498aa37a144b53c8afca21a1a4, type: 3}
+    audioClip: {fileID: 8300000, guid: 0f39b257bc90b924db3a7a82c8b2a595, type: 3}
   m_sfxList:
   - name: Punch
     audioClip: {fileID: 8300000, guid: feccfa3204b98bf41ba53898d5cd8176, type: 3}
