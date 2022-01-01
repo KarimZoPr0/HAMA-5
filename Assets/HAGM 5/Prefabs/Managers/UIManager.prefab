@@ -662,6 +662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4086146294567279221, guid: f7f92a228bdb7394a8d01b4d7961320f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7f92a228bdb7394a8d01b4d7961320f, type: 3}
 --- !u!224 &8466959646637143173 stripped
