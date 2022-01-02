@@ -12,12 +12,13 @@ public class Panel : MonoBehaviour
 		End,
 	}
 
-	[Title("Panel Infos")]
+	[Title("Panel Fading")]
 	[SerializeField] private CanvasGroup m_canvasGroup;
+	[SerializeField] private float m_fadeTime = 0.5f;
 	private Tweener m_canvasGroupTween;
 	public Type type;
 
-	void OnDestroy()
+	protected virtual void OnDestroy()
 	{
 		m_canvasGroupTween?.Kill();
 	}
@@ -32,7 +33,7 @@ public class Panel : MonoBehaviour
 		if (_fade)
 		{
 			m_canvasGroup.alpha = 0f;
-			m_canvasGroupTween = m_canvasGroup.DOFade(1f, 0.5f);
+			m_canvasGroupTween = m_canvasGroup.DOFade(1f, m_fadeTime);
 		}
 		else
 			m_canvasGroup.alpha = 1f;
@@ -46,7 +47,7 @@ public class Panel : MonoBehaviour
 			m_canvasGroupTween.Kill();
 
 		if (_fade)
-			m_canvasGroupTween = m_canvasGroup.DOFade(0f, 0.5f).OnComplete(() => gameObject.SetActive(false));
+			m_canvasGroupTween = m_canvasGroup.DOFade(0f, m_fadeTime).OnComplete(() => gameObject.SetActive(false));
 		else
 		{
 			m_canvasGroup.alpha = 0f;

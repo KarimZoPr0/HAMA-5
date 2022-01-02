@@ -3,8 +3,18 @@ using UnityEngine.EventSystems;
 
 public class InteractableGameElement : MonoBehaviour
 {
-	private bool m_mouseOver = false;
-	private bool m_interactable = true;
+	protected bool m_mouseOver = false;
+	protected bool m_interactable = true;
+
+	private void OnDestroy ()
+	{
+		if (m_mouseOver)
+		{
+			m_mouseOver = false;
+			InputManager.SetCursor(InputManager.CursorType.Cursor);
+			OnExitHover();
+		}
+	}
 
 	public void OnMouseOver ()
 	{
@@ -39,9 +49,12 @@ public class InteractableGameElement : MonoBehaviour
 
 	public void OnMouseExit ()
 	{
-		m_mouseOver = false;
-		InputManager.SetCursor(InputManager.CursorType.Cursor);
-		OnExitHover();
+		if (m_mouseOver)
+		{
+			m_mouseOver = false;
+			InputManager.SetCursor(InputManager.CursorType.Cursor);
+			OnExitHover();
+		}
 	}
 
 	protected virtual void Interact ()

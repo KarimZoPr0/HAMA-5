@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+	[Title("References")]
+	public CurrencyConfigs currencyConfigs;
+
 	#region StateMachine
 	public static Action<GameState> OnGameStateEnter;
 	public static Action<GameState> OnGameStateExit;
@@ -54,6 +58,7 @@ public class GameManager : Singleton<GameManager>
 			case GameState.InGame:
 				AudioManager.PlayMain("MainTheme");
 				UIManager.OpenPanel(Panel.Type.Game, true);
+				CurrencyManager.Init();
 				break;
 			case GameState.EndScreen:
 				if (isPaused) TogglePause();

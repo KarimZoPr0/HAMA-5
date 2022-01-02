@@ -386,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f396b744e86ac544e8f2417780fe6920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyConfigs: {fileID: 11400000, guid: c7eefcb1f853c6b4fafac045d2183d46, type: 2}
   isPaused: 0
 --- !u!1 &495467275
 GameObject:

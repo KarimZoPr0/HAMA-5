@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class PausePanel : Panel
 {
+	[Title("Buttons")]
+	[SerializeField] private Button m_pauseBtn;
+
 	[Title("Sliders")]
 	[SerializeField] private Slider m_musicSlider;
 	[SerializeField] private Slider m_sfxSlider;
@@ -12,6 +15,20 @@ public class PausePanel : Panel
 	{
 		m_musicSlider.onValueChanged.AddListener(MusicVolumeChanged);
 		m_sfxSlider.onValueChanged.AddListener(SFXVolumeChanged);
+		m_pauseBtn.onClick.AddListener(OnClickPause);
+	}
+
+	protected override void OnDestroy ()
+	{
+		base.OnDestroy();
+		m_musicSlider.onValueChanged.RemoveListener(MusicVolumeChanged);
+		m_sfxSlider.onValueChanged.RemoveListener(SFXVolumeChanged);
+		m_pauseBtn.onClick.RemoveListener(OnClickPause);
+	}
+
+	private void OnClickPause ()
+	{
+		GameManager.Instance.TogglePause();
 	}
 
 	private void MusicVolumeChanged ( float _value )

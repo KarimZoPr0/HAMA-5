@@ -54,6 +54,10 @@ MonoBehaviour:
   m_sfxList:
   - name: Punch
     audioClip: {fileID: 8300000, guid: feccfa3204b98bf41ba53898d5cd8176, type: 3}
+  - name: Bop
+    audioClip: {fileID: 8300000, guid: 49d5baa9c8d5ec345b946ae708352580, type: 3}
+  - name: Clap
+    audioClip: {fileID: 8300000, guid: 5676bdaf317228c479125e8bbd33b22a, type: 3}
 --- !u!1 &6378837731313972309
 GameObject:
   m_ObjectHideFlags: 0
