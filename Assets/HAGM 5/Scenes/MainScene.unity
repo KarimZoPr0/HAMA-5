@@ -370,10 +370,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment
       objectReference: {fileID: 0}
-    - target: {fileID: 1903739812072647725, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
 --- !u!4 &1354959002 stripped
@@ -442,6 +438,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
+--- !u!114 &1488919830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 304181757963023708, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
+  m_PrefabInstance: {fileID: 1205056788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f451ead21bbdd2b43ae772af85559ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1783947253
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f396b744e86ac544e8f2417780fe6920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyConfigs: {fileID: 11400000, guid: c7eefcb1f853c6b4fafac045d2183d46, type: 2}
+  m_currencyConfigs: {fileID: 11400000, guid: c7eefcb1f853c6b4fafac045d2183d46, type: 2}
+  m_playerController: {fileID: 1488919830}
   isPaused: 0
 --- !u!4 &1783947255
 Transform:

@@ -1,19 +1,31 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InteractableGameElement : MonoBehaviour
+public abstract class InteractableGameElement : MonoBehaviour
 {
 	protected bool m_mouseOver = false;
 	protected bool m_interactable = true;
+	private Coroutine m_interactionCoroutine;
 
 	protected virtual void OnDestroy ()
 	{
+		PlayerMovement.OnStartMovement -= CancelInteraction;
+
 		if (m_mouseOver)
 		{
 			m_mouseOver = false;
 			InputManager.SetCursor(InputManager.CursorType.Cursor);
 			OnExitHover();
 		}
+	}
+
+	protected virtual void CancelInteraction ()
+	{
+		PlayerMovement.OnStartMovement -= CancelInteraction;
+
+		if (m_interactionCoroutine != null)
+			StopCoroutine(m_interactionCoroutine);
 	}
 
 	public void OnMouseOver ()
@@ -46,7 +58,7 @@ public class InteractableGameElement : MonoBehaviour
 		if (m_interactable && m_mouseOver)
 		{
 			if (Input.GetMouseButtonDown(1))
-				Interact();
+				GameManager.playerController.MoveToInteract(transform.position - 2f * Vector3.forward + Random.Range(-1, 2) * Vector3.right, Interact);
 		}
 	}
 
@@ -62,8 +74,11 @@ public class InteractableGameElement : MonoBehaviour
 
 	protected virtual void Interact ()
 	{
-
+		PlayerMovement.OnStartMovement += CancelInteraction;
+		m_interactionCoroutine = StartCoroutine(InteractCR());
 	}
+
+	protected abstract IEnumerator InteractCR ();
 
 	protected virtual void OnStartHover ()
 	{

@@ -33,11 +33,14 @@ public class PanAndZoomCamera : MonoBehaviour
 
 	private void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
-			ResetCamera();
+		if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+				ResetCamera();
 
-		if (Input.GetAxis("Mouse ScrollWheel") != 0)
-			ZoomScreen(Input.GetAxis("Mouse ScrollWheel") * m_cameraConfig.zoomMultiplier);
+			if (Input.GetAxis("Mouse ScrollWheel") != 0)
+				ZoomScreen(Input.GetAxis("Mouse ScrollWheel") * m_cameraConfig.zoomMultiplier);
+		}
 	}
 
 	private void ZoomScreen (float increment)

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class InteractableTree : InteractableGameElement
 {
 	[Title("References")]
@@ -15,6 +16,7 @@ public class InteractableTree : InteractableGameElement
 	[SerializeField] private float m_noGhostBlendValue = 0f;
 
 	[Title("Tween Settings")]
+	[SerializeField] private float m_tweenBaseScale = 1f;
 	[SerializeField] private float m_tweenFinalScale = 0f;
 	[SerializeField] private float m_tweenTime = .3f;
 	[SerializeField] private Ease m_tweenEase = Ease.InBack;
@@ -32,15 +34,31 @@ public class InteractableTree : InteractableGameElement
 
 	protected override void OnDestroy ()
 	{
+		base.OnDestroy();
 		m_transformTween?.Kill();
 	}
 
-	protected override void Interact ()
+	protected override void CancelInteraction ()
 	{
+		base.CancelInteraction();
+		m_transformTween?.Kill();
+		m_transformTween = m_transformToTween.DOScale(m_tweenBaseScale, 0.2f);
+	}
+
+	protected override IEnumerator InteractCR()
+	{
+		m_transformTween = m_transformToTween.DOScale(m_tweenBaseScale * 1.1f, 0.5f).SetEase(Ease.InOutBack).SetLoops(-1, LoopType.Yoyo);
+		GameManager.playerController.RotateToPosition(transform.position);
+
+		yield return new WaitForSeconds(1f);
+
+		PlayerMovement.OnStartMovement -= CancelInteraction;
 		m_interactable = false;
 		CurrencyManager.AddCurrency(Currency.Type.Wood, m_woodAmount);
 		CurrencyManager.AddCurrency(Currency.Type.Dye, m_dyeAmount);
 		AudioManager.PlaySfx("Bop");
+
+		m_transformTween?.Kill();
 		m_transformTween = m_transformToTween.DOScale(m_tweenFinalScale, m_tweenTime).SetEase(m_tweenEase).OnComplete(() =>
 		{
 			Destroy(m_transformToTween.gameObject);

@@ -47,7 +47,7 @@ public class InputManager : Singleton<InputManager>, IPointerEnterHandler, IPoin
 		Grab,
 	}
 
-	private static CursorMode m_cursorMode = CursorMode.Auto;
+	private static CursorMode m_cursorMode = CursorMode.ForceSoftware;
 	private static Vector2 m_hotSpot = new Vector2(4f, 0f);
 
 	public void Start ()

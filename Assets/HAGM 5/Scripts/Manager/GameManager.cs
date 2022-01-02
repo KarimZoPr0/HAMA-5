@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
 	[Title("References")]
-	public CurrencyConfigs currencyConfigs;
+	[SerializeField] private CurrencyConfigs m_currencyConfigs;
+	[SerializeField] private PlayerController m_playerController;
+
+	public static CurrencyConfigs currencyConfigs => Instance.m_currencyConfigs;
+	public static PlayerController playerController => Instance.m_playerController;
+
 
 	#region StateMachine
 	public static Action<GameState> OnGameStateEnter;

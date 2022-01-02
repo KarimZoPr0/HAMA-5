@@ -28,7 +28,7 @@ public static class CurrencyManager
 			}
 		}
 
-		m_currencyConfigDictionary = GameManager.Instance.currencyConfigs.currencyConfigList.ToDictionary(c => c.type);
+		m_currencyConfigDictionary = GameManager.currencyConfigs.currencyConfigList.ToDictionary(c => c.type);
 	}
 
 	public static void AddCurrency ( Currency.Type currencyType, ulong amount )
