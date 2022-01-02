@@ -1,16 +1,24 @@
+using Cinemachine;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanCamera : MonoBehaviour
+public class PanAndZoomCamera : MonoBehaviour
 {
-	[Title("Settings")]
+	[Title("Pan Settings")]
 	[SerializeField] private float m_panScreenPercent = .05f;
-	[SerializeField] private float m_panSpeed = 5;
+	[SerializeField] private float m_panSpeed = 8f;
+
+	[Title("Zoom Settings")]
+	[SerializeField] private float m_zoomSpeed = 3f;
+	[SerializeField] private float m_zoomFovMax = 70f;
+	[SerializeField] private float m_zoomFovMin = 20f;
+	[SerializeField] private float m_zoomMultiplier = 10f;
 
 	[Title("References")]
 	[SerializeField] private Transform m_cameraTransform;
+	[SerializeField] private CinemachineVirtualCamera m_cinemachineVirtualCamera;
 	[SerializeField] private Transform m_playerTransform;
 	private Vector3 m_playerOffset;
 
@@ -22,6 +30,7 @@ public class PanCamera : MonoBehaviour
 	private void Reset ()
 	{
 		m_cameraTransform = transform;
+		m_cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
 	}
 
 	private void ResetCamera ()
@@ -33,6 +42,16 @@ public class PanCamera : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 			ResetCamera();
+
+		if (Input.GetAxis("Mouse ScrollWheel") != 0)
+			ZoomScreen(Input.GetAxis("Mouse ScrollWheel") * m_zoomMultiplier);
+	}
+
+	private void ZoomScreen (float increment)
+	{
+		float fov = m_cinemachineVirtualCamera.m_Lens.FieldOfView;
+		float targetFov = Mathf.Clamp(fov + increment, m_zoomFovMin, m_zoomFovMax);
+		m_cinemachineVirtualCamera.m_Lens.FieldOfView = Mathf.Lerp(fov, targetFov, m_zoomSpeed * Time.deltaTime);
 	}
 
 	private Vector2 PanDirection ( float x, float y )

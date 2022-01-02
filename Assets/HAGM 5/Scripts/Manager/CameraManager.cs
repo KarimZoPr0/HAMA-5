@@ -10,7 +10,7 @@ public class CameraManager : Singleton<CameraManager>
 	public static CinemachineBrain cinemachineBrain => Instance.m_cinemachineBrain;
 
 	[Title("Cameras")]
-	[SerializeField] private PanCamera m_panCamera;
+	[SerializeField] private PanAndZoomCamera m_panCamera;
 	[SerializeField] private List<CameraPair> m_cameraList;
 
 	private Dictionary<string, CinemachineVirtualCamera> m_cameraDictionary;
