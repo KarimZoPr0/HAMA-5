@@ -6,7 +6,7 @@ public class InteractableGameElement : MonoBehaviour
 	protected bool m_mouseOver = false;
 	protected bool m_interactable = true;
 
-	private void OnDestroy ()
+	protected virtual void OnDestroy ()
 	{
 		if (m_mouseOver)
 		{

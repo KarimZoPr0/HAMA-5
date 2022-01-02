@@ -30,7 +30,7 @@ public class InteractableTree : InteractableGameElement
 		m_spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
-	private void OnDestroy ()
+	protected override void OnDestroy ()
 	{
 		m_transformTween?.Kill();
 	}
