@@ -34,6 +34,13 @@ public class CameraManager : Singleton<CameraManager>
 			Instance.m_activeCamera = Instance.m_cameraDictionary[cameraName];
 		}	
 	}
+
+	public static void ReturnToMainCamera()
+	{
+		Instance.m_activeCamera.Priority = 0;
+		Instance.m_cameraDictionary["MainCamera"].Priority = 10;
+		Instance.m_activeCamera = Instance.m_cameraDictionary["MainCamera"];
+	}
 }
 
 [System.Serializable]

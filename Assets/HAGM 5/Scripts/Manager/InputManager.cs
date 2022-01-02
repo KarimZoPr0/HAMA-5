@@ -8,32 +8,37 @@ public class InputManager : Singleton<InputManager>
 	[SerializeField] private Texture2D m_handInteractTexture;
 	[SerializeField] private Texture2D m_handGrabTexture;
 
-	private CursorState m_cursorState;
-	public static CursorState CursorStatus
+	private CursorType m_cursorState;
+	private static CursorType CursorStatus
 	{
 		get => Instance.m_cursorState;
 		set
 		{
 			Instance.m_cursorState = value;
 
-			Cursor.visible = CursorStatus != CursorState.None;
+			Cursor.visible = CursorStatus != CursorType.None;
 
 			switch (CursorStatus)
 			{
-				case CursorState.Cursor:
+				case CursorType.Cursor:
 					Cursor.SetCursor(Instance.m_handBaseTexture, m_hotSpot, m_cursorMode);
 					break;
-				case CursorState.Interact:
+				case CursorType.Interact:
 					Cursor.SetCursor(Instance.m_handInteractTexture, m_hotSpot, m_cursorMode);
 					break;
-				case CursorState.Grab:
+				case CursorType.Grab:
 					Cursor.SetCursor(Instance.m_handGrabTexture, m_hotSpot, m_cursorMode);
 					break;
 			}
 		}
 	}
 
-	public enum CursorState
+	public static void SetCursor ( CursorType cursorType )
+	{
+		CursorStatus = cursorType;
+	}
+
+	public enum CursorType
 	{
 		None,
 		Cursor,
@@ -46,7 +51,7 @@ public class InputManager : Singleton<InputManager>
 
 	public void Start ()
 	{
-		CursorStatus = CursorState.Cursor;
+		CursorStatus = CursorType.Cursor;
 	}
 
 	void OnMouseEnter ()
@@ -62,12 +67,12 @@ public class InputManager : Singleton<InputManager>
 	private void Update ()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
-			CursorStatus = CursorState.Cursor;
+			CursorStatus = CursorType.Cursor;
 		if (Input.GetKeyDown(KeyCode.DownArrow))
-			CursorStatus = CursorState.None;
+			CursorStatus = CursorType.None;
 		if (Input.GetKeyDown(KeyCode.UpArrow))
-			CursorStatus = CursorState.Interact;
+			CursorStatus = CursorType.Interact;
 		if (Input.GetKeyDown(KeyCode.RightArrow))
-			CursorStatus = CursorState.Grab;
+			CursorStatus = CursorType.Grab;
 	}
 }

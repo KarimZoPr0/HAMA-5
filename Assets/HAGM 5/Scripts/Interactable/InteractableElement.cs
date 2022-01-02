@@ -5,11 +5,11 @@ public class InteractableElement : MonoBehaviour, IPointerEnterHandler, IPointer
 {
 	public void OnPointerEnter ( PointerEventData eventData )
 	{
-		InputManager.CursorStatus = InputManager.CursorState.Interact;
+		InputManager.SetCursor(InputManager.CursorType.Interact);
 	}
 
 	public void OnPointerExit ( PointerEventData eventData )
 	{
-		InputManager.CursorStatus = InputManager.CursorState.Cursor;
+		InputManager.SetCursor(InputManager.CursorType.Cursor);
 	}
 }
