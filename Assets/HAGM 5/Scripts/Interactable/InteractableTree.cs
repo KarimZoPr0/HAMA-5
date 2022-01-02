@@ -17,11 +17,15 @@ public class InteractableTree : InteractableGameElement
 
 	[Title("Tween Settings")]
 	[SerializeField] private float m_tweenBaseScale = 1f;
+	[SerializeField] private float m_tweenLoopFinalScale = 1.1f;
+	[SerializeField] private float m_tweenLoopTime = 0.5f;
+	[SerializeField] private float m_tweenToBaseScaleTime = 0.2f;
 	[SerializeField] private float m_tweenFinalScale = 0f;
-	[SerializeField] private float m_tweenTime = .3f;
+	[SerializeField] private float m_tweenTime = 0.3f;
 	[SerializeField] private Ease m_tweenEase = Ease.InBack;
 
 	[Title("Collect Settings")]
+	[SerializeField] private float m_chopTime = 1f;
 	[SerializeField] private ulong m_woodAmount = 5;
 	[SerializeField] private ulong m_dyeAmount = 1;
 
@@ -42,15 +46,15 @@ public class InteractableTree : InteractableGameElement
 	{
 		base.CancelInteraction();
 		m_transformTween?.Kill();
-		m_transformTween = m_transformToTween.DOScale(m_tweenBaseScale, 0.2f);
+		m_transformTween = m_transformToTween.DOScale(m_tweenBaseScale, m_tweenToBaseScaleTime);
 	}
 
 	protected override IEnumerator InteractCR()
 	{
-		m_transformTween = m_transformToTween.DOScale(m_tweenBaseScale * 1.1f, 0.5f).SetEase(Ease.InOutBack).SetLoops(-1, LoopType.Yoyo);
+		m_transformTween = m_transformToTween.DOScale(m_tweenLoopFinalScale, m_tweenLoopTime).SetEase(Ease.InOutBack).SetLoops(-1, LoopType.Yoyo);
 		GameManager.playerController.RotateToPosition(transform.position);
 
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(m_chopTime);
 
 		PlayerMovement.OnStartMovement -= CancelInteraction;
 		m_interactable = false;
