@@ -41,10 +41,13 @@ public class InteractableGameElement : MonoBehaviour
 		}
 	}
 
-	public void OnMouseDown ()
+	private void Update ()
 	{
 		if (m_interactable && m_mouseOver)
-			Interact();
+		{
+			if (Input.GetMouseButtonDown(1))
+				Interact();
+		}
 	}
 
 	public void OnMouseExit ()

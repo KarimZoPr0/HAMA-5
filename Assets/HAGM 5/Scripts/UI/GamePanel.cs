@@ -18,7 +18,6 @@ public class GamePanel : Panel
 
 		foreach (CurrencyUIPair currencyUIPair in m_currencyUIList)
 		{
-
 			if (!m_currencyUIDictionary.ContainsKey(currencyUIPair.currencyType))
 			{
 				m_currencyUIDictionary.Add(currencyUIPair.currencyType, currencyUIPair.currencyUI);

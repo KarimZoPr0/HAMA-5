@@ -10,6 +10,7 @@ public class CurrencyUI : MonoBehaviour
 	public void Init ( Currency.Type currencyType )
 	{
 		m_currencyIcon.sprite = CurrencyManager.GetConfig(currencyType).sprite;
+		m_currencyText.text = 0.ToString();
 	}
 
 	public void SetDisplay ( ulong textDisplayed )

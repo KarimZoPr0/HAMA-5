@@ -371,12 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c623f717ebb8042bbd403af90a0f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_panScreenPercent: 0.1
-  m_panSpeed: 8
-  m_zoomSpeed: 50
-  m_zoomFovMax: 70
-  m_zoomFovMin: 20
-  m_zoomMultiplier: -250
+  m_cameraConfig: {fileID: 11400000, guid: aa32be9951ae4014fa0ba412b3cf66f0, type: 2}
   m_cameraTransform: {fileID: 6507956372053792272}
   m_cinemachineVirtualCamera: {fileID: 6507956372053792273}
   m_playerTransform: {fileID: 0}
