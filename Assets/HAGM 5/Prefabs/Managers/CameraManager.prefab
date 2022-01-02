@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6507956372053792272}
   - component: {fileID: 6507956372053792273}
+  - component: {fileID: 4973684533147659697}
   m_Layer: 0
   m_Name: VCamera
   m_TagString: Untagged
@@ -357,3 +358,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6507956370310376696}
+--- !u!114 &4973684533147659697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6507956372053792278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0962ea0a5cf934082f21a934750d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFieldOfView: 60
+  targetAspectRatio: {x: 960, y: 540}
+  largestResizeMode: 0
+  narrowResizeMode: 1
+  inAnimation: 0
+  camera: {fileID: 6507956372053792273}

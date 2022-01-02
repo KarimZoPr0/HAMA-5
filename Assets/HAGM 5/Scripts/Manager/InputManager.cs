@@ -9,7 +9,7 @@ public class InputManager : Singleton<InputManager>
 	[SerializeField] private Texture2D m_handGrabTexture;
 
 	private CursorType m_cursorState;
-	private static CursorType CursorStatus
+	public static CursorType CursorStatus
 	{
 		get => Instance.m_cursorState;
 		set
