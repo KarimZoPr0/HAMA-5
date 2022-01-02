@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 192721686}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229056233}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 236815449}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: PlayerRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236815448}
   m_LocalRotation: {x: 0.3420201, y: -0, z: -0, w: 0.9396927}
-  m_LocalPosition: {x: 0.39, y: 0, z: 2.08}
+  m_LocalPosition: {x: 0, y: 0, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 741322049}
@@ -718,7 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 595154073}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -941,7 +941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 901739525}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -972,7 +972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048441415}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1130,7 +1130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1124233164}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1184080334}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,7 +1192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1187574049}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1350,7 +1350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259987512}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1381,7 +1381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286204433}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1412,7 +1412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1302783224}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1824,7 +1824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1355312978}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1855,7 +1855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1358948538}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2444,7 +2444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633140955}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2602,7 +2602,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786273395}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2760,7 +2760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1829460348}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2791,7 +2791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932737538}
   m_Layer: 0
-  m_Name: Rotator
+  m_Name: TreeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3310,6 +3310,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2044133408690802021, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
+      propertyPath: m_playerTransform
+      value: 
+      objectReference: {fileID: 236815449}
+    - target: {fileID: 6507956371334483489, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.99
+      objectReference: {fileID: 0}
     - target: {fileID: 6507956371922513856, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3330,7 +3338,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4973684533147659697, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
 --- !u!1001 &8466959646723116024
 PrefabInstance:

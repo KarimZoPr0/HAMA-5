@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cinemachineBrain: {fileID: 6507956371334483488}
   m_activeCamera: {fileID: 6507956372053792273}
+  m_panCamera: {fileID: 2044133408690802021}
   m_cameraList:
   - name: MainCamera
     virtualCamera: {fileID: 6507956372053792273}
@@ -300,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6507956372053792272}
   - component: {fileID: 6507956372053792273}
-  - component: {fileID: 4973684533147659697}
+  - component: {fileID: 2044133408690802021}
   m_Layer: 0
   m_Name: VCamera
   m_TagString: Untagged
@@ -358,7 +359,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6507956370310376696}
---- !u!114 &4973684533147659697
+--- !u!114 &2044133408690802021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,12 +368,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6507956372053792278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0962ea0a5cf934082f21a934750d68, type: 3}
+  m_Script: {fileID: 11500000, guid: 96c623f717ebb8042bbd403af90a0f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetFieldOfView: 60
-  targetAspectRatio: {x: 960, y: 540}
-  largestResizeMode: 0
-  narrowResizeMode: 1
-  inAnimation: 0
-  camera: {fileID: 6507956372053792273}
+  m_panScreenPercent: 0.05
+  m_panSpeed: 8
+  m_cameraTransform: {fileID: 6507956372053792272}
+  m_playerTransform: {fileID: 0}

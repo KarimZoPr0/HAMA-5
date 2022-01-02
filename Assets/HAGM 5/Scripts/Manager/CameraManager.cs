@@ -10,6 +10,7 @@ public class CameraManager : Singleton<CameraManager>
 	public static CinemachineBrain cinemachineBrain => Instance.m_cinemachineBrain;
 
 	[Title("Cameras")]
+	[SerializeField] private PanCamera m_panCamera;
 	[SerializeField] private List<CameraPair> m_cameraList;
 
 	private Dictionary<string, CinemachineVirtualCamera> m_cameraDictionary;
@@ -32,14 +33,19 @@ public class CameraManager : Singleton<CameraManager>
 			Instance.m_activeCamera.Priority = 0;
 			Instance.m_cameraDictionary[cameraName].Priority = 10;
 			Instance.m_activeCamera = Instance.m_cameraDictionary[cameraName];
-		}	
+		}
 	}
 
-	public static void ReturnToMainCamera()
+	public static void ReturnToMainCamera ()
 	{
 		Instance.m_activeCamera.Priority = 0;
 		Instance.m_cameraDictionary["MainCamera"].Priority = 10;
 		Instance.m_activeCamera = Instance.m_cameraDictionary["MainCamera"];
+	}
+
+	public void PanScreen ( float x, float y )
+	{
+		m_panCamera.PanScreen(x, y);
 	}
 }
 

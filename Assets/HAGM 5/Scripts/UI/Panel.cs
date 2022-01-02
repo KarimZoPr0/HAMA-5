@@ -18,7 +18,7 @@ public class Panel : MonoBehaviour
 	private Tweener m_canvasGroupTween;
 	public Type type;
 
-	protected virtual void OnDestroy()
+	protected virtual void OnDestroy ()
 	{
 		m_canvasGroupTween?.Kill();
 	}
@@ -27,8 +27,7 @@ public class Panel : MonoBehaviour
 	{
 		gameObject.SetActive(true);
 
-		if (m_canvasGroupTween != null)
-			m_canvasGroupTween.Kill();
+		m_canvasGroupTween?.Kill();
 
 		if (_fade)
 		{
@@ -43,8 +42,7 @@ public class Panel : MonoBehaviour
 
 	public virtual Panel ClosePanel ( bool _fade )
 	{
-		if (m_canvasGroupTween != null)
-			m_canvasGroupTween.Kill();
+		m_canvasGroupTween?.Kill();
 
 		if (_fade)
 			m_canvasGroupTween = m_canvasGroup.DOFade(0f, m_fadeTime).OnComplete(() => gameObject.SetActive(false));

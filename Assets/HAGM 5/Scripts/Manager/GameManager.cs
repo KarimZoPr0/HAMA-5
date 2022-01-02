@@ -53,10 +53,10 @@ public class GameManager : Singleton<GameManager>
 			case GameState.None:
 				break;
 			case GameState.MainScreen:
-				UIManager.OpenPanel(Panel.Type.Main, true);
+				AudioManager.PlayMain("MainTheme");
+				UIManager.OpenPanel(Panel.Type.Main, false);
 				break;
 			case GameState.InGame:
-				AudioManager.PlayMain("MainTheme");
 				UIManager.OpenPanel(Panel.Type.Game, true);
 				CurrencyManager.Init();
 				break;
@@ -94,7 +94,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		if (GameState == GameState.MainScreen && Input.GetMouseButtonDown(0)) GameState = GameState.InGame;
 		if (GameState == GameState.InGame && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))) TogglePause();
-		if (GameState == GameState.InGame && Input.GetKeyDown(KeyCode.Space)) GameState = GameState.EndScreen;
+		if (GameState == GameState.InGame && Input.GetKeyDown(KeyCode.Return)) GameState = GameState.EndScreen;
 		if (GameState == GameState.EndScreen && Input.GetKeyDown(KeyCode.R)) Restart();
 	}
 

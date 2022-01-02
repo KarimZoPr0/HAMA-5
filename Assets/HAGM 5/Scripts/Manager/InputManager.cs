@@ -1,7 +1,8 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class InputManager : Singleton<InputManager>
+public class InputManager : Singleton<InputManager>, IPointerEnterHandler, IPointerExitHandler
 {
 	[Title("Cursor")]
 	[SerializeField] private Texture2D m_handBaseTexture;
@@ -54,25 +55,27 @@ public class InputManager : Singleton<InputManager>
 		CursorStatus = CursorType.Cursor;
 	}
 
-	void OnMouseEnter ()
+	public void OnPointerEnter ( PointerEventData eventData )
 	{
-		Cursor.SetCursor(m_handBaseTexture, m_hotSpot, m_cursorMode);
+		m_pointerIn = true;
 	}
 
-	void OnMouseExit ()
+	public void OnPointerExit ( PointerEventData eventData )
 	{
-		Cursor.SetCursor(null, Vector2.zero, m_cursorMode);
+		m_pointerIn = false;
 	}
+
+	private bool m_pointerIn;
 
 	private void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-			CursorStatus = CursorType.Cursor;
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-			CursorStatus = CursorType.None;
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-			CursorStatus = CursorType.Interact;
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-			CursorStatus = CursorType.Grab;
+		if (m_pointerIn)
+		{
+			float x = Input.mousePosition.x;
+			float y = Input.mousePosition.y;
+
+			if (x != 0 || y != 0)
+				CameraManager.Instance.PanScreen(x, y);
+		}
 	}
 }

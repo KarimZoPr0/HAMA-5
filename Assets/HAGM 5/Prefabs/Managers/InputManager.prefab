@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4572210277247433403}
   - component: {fileID: 4572210277247433405}
   - component: {fileID: 4572210277247433404}
+  - component: {fileID: 2941775780171366298}
   m_Layer: 5
   m_Name: InputManager
   m_TagString: Untagged
@@ -60,3 +61,33 @@ MonoBehaviour:
   m_handBaseTexture: {fileID: 2800000, guid: 54f2f2ee66b33464daf873e7dd6547d7, type: 3}
   m_handInteractTexture: {fileID: 2800000, guid: 6c3dd2b2cf31b26448c6d1f09353428d, type: 3}
   m_handGrabTexture: {fileID: 2800000, guid: ee1c72d3021ae894395403a756951d32, type: 3}
+--- !u!114 &2941775780171366298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572210277247433400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
