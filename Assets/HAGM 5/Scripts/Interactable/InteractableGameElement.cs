@@ -67,11 +67,11 @@ public class InteractableGameElement : MonoBehaviour
 
 	protected virtual void OnStartHover ()
 	{
-		//GetComponent<SpriteRenderer>().material.SetFloat("_GhostBlend", 0.8f);
+
 	}
 
 	protected virtual void OnExitHover ()
 	{
-		//GetComponent<SpriteRenderer>().material.SetFloat("_GhostBlend", 0f);
+
 	}
 }
