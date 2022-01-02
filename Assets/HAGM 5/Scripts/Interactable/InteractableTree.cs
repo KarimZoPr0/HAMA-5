@@ -30,10 +30,16 @@ public class InteractableTree : InteractableGameElement
 	[SerializeField] private ulong m_dyeAmount = 1;
 
 	private Tweener m_transformTween;
+	private WaitForSeconds m_waitForChopping;
 
 	private void Reset ()
 	{
 		m_spriteRenderer = GetComponent<SpriteRenderer>();
+	}
+
+	private void Awake ()
+	{
+		m_waitForChopping = new WaitForSeconds(m_chopTime);
 	}
 
 	protected override void OnDestroy ()
@@ -54,7 +60,7 @@ public class InteractableTree : InteractableGameElement
 		m_transformTween = m_transformToTween.DOScale(m_tweenLoopFinalScale, m_tweenLoopTime).SetEase(Ease.InOutBack).SetLoops(-1, LoopType.Yoyo);
 		GameManager.playerController.RotateToPosition(transform.position);
 
-		yield return new WaitForSeconds(m_chopTime);
+		yield return m_waitForChopping;
 
 		PlayerMovement.OnStartMovement -= CancelInteraction;
 		m_interactable = false;
