@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5babecd8e2bc2f74fa864dc371fa40ed, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 8bdf9608c47da9a4982161c6d15344f6, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 904f7a77e44db1f40825f9b98bdb19c0, type: 2}
 --- !u!4 &236815449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1903739812087101124, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
@@ -251,31 +251,11 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1903739811213329126, guid: 60117b509842cae46b5f3fa734cd60c4, type: 3}
