@@ -53,11 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
 		while (m_navMeshAgent.remainingDistance >= .1f)
 		{
-			float sign = Mathf.Sign(m_navMeshAgent.velocity.x);
-
-			if (sign < 0)
+			if (m_navMeshAgent.velocity.x < 0.05f)
 				m_spriteRenderer.flipX = true;
-			else if (sign > 0)
+			else if (m_navMeshAgent.velocity.x > 0.05f)
 				m_spriteRenderer.flipX = false;
 
 			yield return null;
