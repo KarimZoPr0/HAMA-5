@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529290487605162868}
   - component: {fileID: 529290487605162864}
-  - component: {fileID: 529290487605162867}
+  - component: {fileID: 5027121851148870314}
   - component: {fileID: 529290487605162866}
   - component: {fileID: 529290487605162869}
   m_Layer: 0
@@ -202,7 +202,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &529290487605162867
+--- !u!114 &5027121851148870314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,12 +211,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 529290487605162871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f2b4507ff5678b4ab90676681af2b80, type: 3}
+  m_Script: {fileID: 11500000, guid: ea53ad7d91dd8a443a6c5040453d6cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_navMeshAgent: {fileID: 529290487605162864}
-  m_spriteRenderer: {fileID: 529290486526248181}
-  isMoving: 0
+  speed: 6
+  walkRadius: 25
 --- !u!114 &529290487605162866
 MonoBehaviour:
   m_ObjectHideFlags: 0
