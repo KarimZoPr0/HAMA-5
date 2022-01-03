@@ -106,8 +106,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6669483221877866685}
   - component: {fileID: 6669483221877866681}
-  - component: {fileID: 6669483221877866682}
   - component: {fileID: 6669483221877866684}
+  - component: {fileID: 1263322523}
   m_Layer: 0
   m_Name: Fench AI
   m_TagString: Untagged
@@ -122,7 +122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6669483221877866686}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.45, y: -0.6794815, z: -10.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -152,21 +152,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6669483221877866682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6669483221877866686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f2b4507ff5678b4ab90676681af2b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_navMeshAgent: {fileID: 6669483221877866681}
-  m_spriteRenderer: {fileID: 6669483220570992749}
-  isMoving: 0
 --- !u!114 &6669483221877866684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +165,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: {fileID: 11400000, guid: 0a81f3a273d2a9d49a550c27663fdd60, type: 2}
+--- !u!114 &1263322523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669483221877866686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea53ad7d91dd8a443a6c5040453d6cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  walkRadius: 30
 --- !u!1 &6669483222163887519
 GameObject:
   m_ObjectHideFlags: 0
