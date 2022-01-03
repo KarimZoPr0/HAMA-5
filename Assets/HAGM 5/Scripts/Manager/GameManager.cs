@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>

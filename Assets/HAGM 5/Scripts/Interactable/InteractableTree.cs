@@ -30,43 +30,44 @@ public class InteractableTree : InteractableGameElement
 	[SerializeField] private ulong m_dyeAmount = 1;
 
 	private Tweener m_transformTween;
-	private WaitForSeconds m_waitForChopping;
 
 	private void Reset ()
 	{
 		m_spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
-	private void Awake ()
-	{
-		m_waitForChopping = new WaitForSeconds(m_chopTime);
-	}
 
 	protected override void OnDestroy ()
 	{
 		base.OnDestroy();
+		PlayerMovement.OnStartMovement -= CancelInteraction;
 		m_transformTween?.Kill();
 	}
 
 	protected override void CancelInteraction ()
 	{
 		base.CancelInteraction();
+		PlayerMovement.OnStartMovement -= CancelInteraction;
 		m_transformTween?.Kill();
 		m_transformTween = m_transformToTween.DOScale(m_tweenBaseScale, m_tweenToBaseScaleTime);
 	}
 
 	protected override IEnumerator InteractCR()
 	{
+		PlayerMovement.OnStartMovement += CancelInteraction;
 		m_transformTween = m_transformToTween.DOScale(m_tweenLoopFinalScale, m_tweenLoopTime).SetEase(Ease.InOutBack).SetLoops(-1, LoopType.Yoyo);
 		GameManager.playerController.RotateToPosition(transform.position);
 
-		yield return m_waitForChopping;
+		AudioManager.PlaySfx("Chop");
+		yield return new WaitForSeconds(m_chopTime / 2f);
+		AudioManager.PlaySfx("Chop");
+		yield return new WaitForSeconds(m_chopTime / 2f);
 
 		PlayerMovement.OnStartMovement -= CancelInteraction;
 		m_interactable = false;
 		CurrencyManager.AddCurrency(Currency.Type.Wood, m_woodAmount);
 		CurrencyManager.AddCurrency(Currency.Type.Dye, m_dyeAmount);
-		AudioManager.PlaySfx("Bop");
+		AudioManager.PlaySfx("TreeCut");
 
 		m_transformTween?.Kill();
 		m_transformTween = m_transformToTween.DOScale(m_tweenFinalScale, m_tweenTime).SetEase(m_tweenEase).OnComplete(() =>

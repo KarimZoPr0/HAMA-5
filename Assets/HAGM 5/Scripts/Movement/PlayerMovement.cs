@@ -21,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update ()
 	{
-		if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && Input.GetMouseButtonDown(1))
+		if (!InputManager.canMove)
+			return;
+
+		if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && !InputManager.grabLocked && InputManager.pointerIn && Input.GetMouseButton(1))
 			MoveOnClick();
 	}
 
@@ -59,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 				m_spriteRenderer.flipX = false;
 
 			yield return null;
-		}	
+		}
 
 		isMoving = false;
 		OnDestinationReached?.Invoke();

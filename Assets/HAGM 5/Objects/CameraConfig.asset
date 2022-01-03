@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c387d3623ad57e84a919cfcf1dddfc06, type: 3}
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
-  panScreenPercent: 0.2
+  panScreenPercent: 0.05
   panSpeed: 8
   zoomSpeed: 50
   zoomFovMax: 70

@@ -48,12 +48,16 @@ public class AudioManager : Singleton<AudioManager>
 			Instance.m_mainSource.clip = Instance.m_audioDictionary[soundName];
 			Instance.m_mainSource.Play();
 		}
+		else
+			Debug.Log("AudioManager : Main / KeyNotFound : " + soundName);
 	}
 
 	public static void PlaySfx ( string soundName )
 	{
 		if (Instance.m_sfxDictionary.ContainsKey(soundName))
 			Instance.m_soundAudioSource.PlayOneShot(Instance.m_sfxDictionary[soundName]);
+		else
+			Debug.Log("AudioManager : SFX / KeyNotFound : " + soundName);
 	}
 }
 

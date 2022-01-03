@@ -19,4 +19,20 @@ public static class GameObjectUtils
 			SetStaticRecursively(child.gameObject);
 		}
 	}
+
+	public static void RemoveStaticRecursively ( GameObject obj )
+	{
+		if (null == obj)
+			return;
+
+		obj.isStatic = false;
+
+		foreach (Transform child in obj.transform)
+		{
+			if (null == child)
+				continue;
+
+			RemoveStaticRecursively(child.gameObject);
+		}
+	}
 }

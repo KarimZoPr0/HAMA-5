@@ -7,6 +7,7 @@ public class GamePanel : Panel
 {
 	[Title("Buttons")]
 	[SerializeField] private Button m_pauseBtn;
+
 	[Title("Currencys")]
 	[SerializeField] private List<CurrencyUIPair> m_currencyUIList;
 

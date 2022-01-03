@@ -6,12 +6,10 @@ public abstract class InteractableGameElement : MonoBehaviour
 {
 	protected bool m_mouseOver = false;
 	protected bool m_interactable = true;
-	private Coroutine m_interactionCoroutine;
+	protected Coroutine m_interactionCoroutine;
 
 	protected virtual void OnDestroy ()
 	{
-		PlayerMovement.OnStartMovement -= CancelInteraction;
-
 		if (m_mouseOver)
 		{
 			m_mouseOver = false;
@@ -22,17 +20,18 @@ public abstract class InteractableGameElement : MonoBehaviour
 
 	protected virtual void CancelInteraction ()
 	{
-		PlayerMovement.OnStartMovement -= CancelInteraction;
-
 		if (m_interactionCoroutine != null)
 			StopCoroutine(m_interactionCoroutine);
 	}
 
 	public void OnMouseOver ()
 	{
+		if (!InputManager.canInteract)
+			return;
+
 		if (!m_mouseOver)
 		{
-			if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && m_interactable)
+			if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && m_interactable&& !InputManager.grabLocked)
 			{
 				m_mouseOver = true;
 				InputManager.SetCursor(InputManager.CursorType.Interact);
@@ -41,7 +40,7 @@ public abstract class InteractableGameElement : MonoBehaviour
 		}
 		else
 		{
-			if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && m_interactable)
+			if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && m_interactable && !InputManager.grabLocked)
 			{
 				if (InputManager.CursorStatus != InputManager.CursorType.Interact)
 					InputManager.SetCursor(InputManager.CursorType.Interact);
@@ -55,10 +54,15 @@ public abstract class InteractableGameElement : MonoBehaviour
 
 	private void Update ()
 	{
-		if (m_interactable && m_mouseOver)
+		if (!InputManager.canInteract)
+			return;
+
+		if (m_interactable && m_mouseOver && InputManager.CursorStatus == InputManager.CursorType.Interact)
 		{
-			if (Input.GetMouseButtonDown(1))
-				GameManager.playerController.MoveToInteract(transform.position - 2f * Vector3.forward + Random.Range(-1, 2) * Vector3.right, Interact);
+			if (Input.GetMouseButtonDown(1) && !InputManager.grabLocked)
+			{
+				TryToInteract();
+			}	
 		}
 	}
 
@@ -72,9 +76,13 @@ public abstract class InteractableGameElement : MonoBehaviour
 		}
 	}
 
+	protected virtual void TryToInteract()
+	{
+		GameManager.playerController.MoveToInteract(transform.position - 2f * Vector3.forward + Random.Range(-1, 2) * Vector3.right, Interact);
+	}
+
 	protected virtual void Interact ()
 	{
-		PlayerMovement.OnStartMovement += CancelInteraction;
 		m_interactionCoroutine = StartCoroutine(InteractCR());
 	}
 
