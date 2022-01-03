@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e929c21dccc2a4881708df7301b794, type: 3}
-  m_Name: HighDamage
+  m_Script: {fileID: 11500000, guid: bcec693931a054a46b232a83967c4a6f, type: 3}
+  m_Name: Tower
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 0
+  defeatAbleElements:
+  - {fileID: 11400000, guid: d70b4cf4c1603f646b7860f6f344a26e, type: 2}

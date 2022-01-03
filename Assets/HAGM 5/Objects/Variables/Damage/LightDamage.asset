@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95e929c21dccc2a4881708df7301b794, type: 3}
-  m_Name: MediumDamage
+  m_Name: LightDamage
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 20
+  DeveloperDescription: "damage dealt by weak enemies \nand primitive shapes"
+  Value: 10
