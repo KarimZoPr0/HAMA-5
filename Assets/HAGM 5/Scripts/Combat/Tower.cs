@@ -6,42 +6,21 @@ using UnityEngine;
 using UnityEngine.Experimental.AI;
 
 public class Tower : MonoBehaviour {
-	private Transform target;
-	
 	[Title("Attributes")]
-	public float range = 15f;
 	public  float fireRate      = 1f;
 	private float _fireCountDown = 0f;
+	public  bool  canFire = true;
 
 	[Title("Unity Setup Fields")]
+	
+	public Chase      chase;
 	public GameObject projectile;
-	public Transform firePoint;
-	void Start () {
-		InvokeRepeating("UpdateTarget", 0f, 0.5f);
-	}
-	
-	
-	void UpdateTarget () {
-		Elemental[] enemies          = GameObject.FindObjectsOfType<Elemental>();
-		float        shortestDistance = Mathf.Infinity;
-		GameObject   nearestEnemy     = null;
-		foreach (var enemy in enemies)
-		{
-			if(!GetComponent<Elemental>().element.defeatAbleElements.Contains(enemy.element)) continue;
-			float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-			if (distanceToEnemy < shortestDistance)
-			{
-				shortestDistance = distanceToEnemy;
-				nearestEnemy     = enemy.gameObject;
-			}
-		}
-
-		target = nearestEnemy != null && shortestDistance <= range ? nearestEnemy.transform : null;
-	}
+	public Transform  firePoint;
 
 	private void Update() {
-		if (target == null) return;
-		Debug.DrawLine(transform.position, target.position, Color.red);
+		if (chase.target == null) return;
+		if (!canFire) return;
+		Debug.DrawLine(transform.position, chase.target.position, Color.red);
 		if (_fireCountDown <= 0f) {
 			Shoot();
 			_fireCountDown = 1f / fireRate;
@@ -50,18 +29,11 @@ public class Tower : MonoBehaviour {
 		_fireCountDown -= Time.deltaTime;
 	}
 
-	private void Shoot() { 
+	private void Shoot() {
 		GameObject bulletGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
 		Projectile bullet   = bulletGO.GetComponent<Projectile>();
 
-		if (bullet != null) {
-			bullet.Seek(target);
-		}
+		bullet.Seek(chase.target);
 	}
 	
-	void OnDrawGizmosSelected ()
-	{
-		Gizmos.color = Color.blue;
-		Gizmos.DrawWireSphere(transform.position, range);
-	}
 }

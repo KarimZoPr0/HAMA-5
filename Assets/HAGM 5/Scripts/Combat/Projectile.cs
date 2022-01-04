@@ -20,18 +20,17 @@ public class Projectile : MonoBehaviour {
 		Vector3 dir               = target.position - transform.position;
 		float   distanceThisFrame = speed * Time.deltaTime;
 
-		if (dir.magnitude <= distanceThisFrame) {
+		if (dir.magnitude < distanceThisFrame) {
 			HitTarget();
 			return;
 		}
 		
 		transform.Translate(dir.normalized * distanceThisFrame, Space.World);
 	}
+	
 
 	public void HitTarget() {
 		Debug.Log("HIT TARGET");
-		var damage = GetComponent<DamageDealer>();
-		target.GetComponent<UnitHealth>().TakeDamage(damage);
-		Destroy(gameObject);
+		Destroy(gameObject, 2f);
 	}
 }

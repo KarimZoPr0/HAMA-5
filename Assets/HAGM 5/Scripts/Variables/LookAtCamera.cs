@@ -6,6 +6,6 @@ using UnityEngine;
 public class LookAtCamera : MonoBehaviour {
     public Transform cam;
     void Update() {
-        transform.LookAt(transform.position + cam.forward);
+        transform.LookAt(transform.position + Camera.main.transform.forward);
     }
 }

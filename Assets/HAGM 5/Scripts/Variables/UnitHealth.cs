@@ -1,27 +1,39 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using Image = UnityEngine.UI.Image;
 
 public class UnitHealth : MonoBehaviour {
-    
-	public FloatReference  HP;
+     private float Min;
+     
+	public float  HP;
 	public bool           ResetHP;
 	public FloatReference StartingHP;
 	public UnityEvent     DamageEvent;
 	public UnityEvent     DeathEvent;
-
+	public Image Image;
+	
 	private void Start() {
 		if (ResetHP)
-			HP.Variable.SetValue(StartingHP);
+			HP =StartingHP;
 	}
 
-	public void TakeDamage(DamageDealer damage) {
+	public void OnTriggerEnter(Collider other) {
+		DamageDealer damage = other.GetComponent<DamageDealer>();
 		if (damage != null) {
-			HP.Variable.ApplyChange(-damage.damageAmount);
+			HP -= damage.damageAmount;
 			DamageEvent.Invoke();
 		}
 
-		if (HP.Value <= 0.0f) {
+		if (HP <= 0.0f) {
 			DeathEvent.Invoke();
 		}
+		
+		SetFillAmount();
+	}
+
+	private void SetFillAmount() {
+		Image.fillAmount = Mathf.Clamp01(
+			Mathf.InverseLerp(Min, StartingHP, HP));
 	}
 }

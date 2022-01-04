@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 224312601019518054}
   - component: {fileID: 222096687907182228}
   - component: {fileID: 114817681289849596}
+  - component: {fileID: 862833639748782237}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -152,6 +153,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &862833639748782237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614268019663440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2cad9b7b033af34a935e3fa883afaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
 --- !u!1 &1622768224925444
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +253,6 @@ GameObject:
   - component: {fileID: 223021138206345110}
   - component: {fileID: 114217077654482236}
   - component: {fileID: 114638933341900888}
-  - component: {fileID: 114253603200608144}
   m_Layer: 5
   m_Name: HPMeter
   m_TagString: Untagged
@@ -328,28 +341,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 127
---- !u!114 &114253603200608144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1909726635822092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c995cf0a1b40c248abdf41b9b1c33ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Variable:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Min:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Max:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Image: {fileID: 0}
