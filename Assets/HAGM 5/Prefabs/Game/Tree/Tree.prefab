@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 2314844862597826072}
   - component: {fileID: 2314844862597826078}
   - component: {fileID: 2314844862597826073}
-  - component: {fileID: 132363013420911899}
+  - component: {fileID: 8212752416999158583}
   m_Layer: 6
   m_Name: InteractableSprite
   m_TagString: Untagged
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_chopTime: 1
   m_woodAmount: 5
   m_dyeAmount: 1
---- !u!114 &132363013420911899
+--- !u!114 &8212752416999158583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,14 +183,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2314844862597826053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb19fd294acd4c5ea76473c4450acaa, type: 3}
+  m_Script: {fileID: 11500000, guid: d153246acdc16694ab1f373b6304e693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sprites:
-  - renderer: {fileID: 2314844862597826072}
-    orderInLayer: 0
-  m_pivotOffsetY: 0
-  m_sortingThreshold: 0.025
+  m_sortingOrderBase: 0
+  m_offset: 0
+  m_runOnlyOnce: 0
+  m_renderer: {fileID: 2314844862597826072}
+  m_pivotTransform: {fileID: 2314844862407004159}
 --- !u!1 &2314844862725770539
 GameObject:
   m_ObjectHideFlags: 0

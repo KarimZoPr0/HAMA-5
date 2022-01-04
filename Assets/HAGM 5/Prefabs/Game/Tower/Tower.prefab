@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 5702281672127133951}
   - component: {fileID: 5702281672127133945}
   - component: {fileID: 5702281672127133933}
+  - component: {fileID: 247472454887556286}
   m_Layer: 6
   m_Name: InteractableSprite
   m_TagString: Untagged
@@ -162,6 +163,23 @@ MonoBehaviour:
   m_navMeshObstacle: {fileID: 7017714629624103834}
   m_ghostBlendValue: 0.8
   m_noGhostBlendValue: 0
+--- !u!114 &247472454887556286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702281672127133922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d153246acdc16694ab1f373b6304e693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sortingOrderBase: 0
+  m_offset: 0
+  m_runOnlyOnce: 0
+  m_renderer: {fileID: 5702281672127133951}
+  m_pivotTransform: {fileID: 5702281672338960664}
 --- !u!1 &5702281672288629708
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554cea76cb84a8247a4b1f44bd2b1ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_unitHealth: {fileID: 0}
   element: {fileID: 11400000, guid: 268fd41a1692cfa4198e2f6d342dbdb3, type: 2}
 --- !u!114 &3724071003610798422
 MonoBehaviour:

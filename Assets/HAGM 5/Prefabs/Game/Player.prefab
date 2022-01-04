@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6223152575905045008}
   - component: {fileID: 6223152575905045009}
   - component: {fileID: 6223152575905045103}
-  - component: {fileID: 8698160337095805116}
+  - component: {fileID: 7524974827183935782}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4905152, y: 3.8047729, z: 0.2}
   m_Center: {x: 0.10759807, y: 0.027168572, z: 0}
---- !u!114 &8698160337095805116
+--- !u!114 &7524974827183935782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,14 +106,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6223152575905045102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb19fd294acd4c5ea76473c4450acaa, type: 3}
+  m_Script: {fileID: 11500000, guid: d153246acdc16694ab1f373b6304e693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sprites:
-  - renderer: {fileID: 6223152575905045009}
-    orderInLayer: 0
-  m_pivotOffsetY: 0
-  m_sortingThreshold: 0.025
+  m_sortingOrderBase: 0
+  m_offset: 0
+  m_runOnlyOnce: 1
+  m_renderer: {fileID: 6223152575905045009}
+  m_pivotTransform: {fileID: 6223152576354920928}
 --- !u!1 &6223152576354920929
 GameObject:
   m_ObjectHideFlags: 0
