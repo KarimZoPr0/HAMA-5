@@ -15,11 +15,11 @@ MonoBehaviour:
   currencyConfigList:
   - name: Dye
     type: 0
-    sprite: {fileID: 21300000, guid: 51caeab4d98b55046a9013cc2da7e427, type: 3}
+    sprite: {fileID: 21300000, guid: 992fc8688bb5ea14bacfa630889dd6b4, type: 3}
     useCap: 0
     currencyCap: 0
   - name: Wood
     type: 1
-    sprite: {fileID: 21300000, guid: c98adffbfc131ea4c90d9fada111a14d, type: 3}
+    sprite: {fileID: 21300000, guid: c5112cf36d36d084ea8baa1337b6e140, type: 3}
     useCap: 0
     currencyCap: 0

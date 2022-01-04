@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 529290486526248183}
   - component: {fileID: 529290486526248181}
   - component: {fileID: 529290486526248180}
+  - component: {fileID: 8103465463036093546}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -127,6 +128,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4905152, y: 3.8047729, z: 0.2}
   m_Center: {x: 0.10759807, y: 0.027168572, z: 0}
+--- !u!114 &8103465463036093546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529290486526248182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb19fd294acd4c5ea76473c4450acaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sprites:
+  - renderer: {fileID: 529290486526248181}
+    orderInLayer: 0
+  m_pivotOffsetY: 0
+  m_sortingThreshold: 0.025
 --- !u!1 &529290487605162871
 GameObject:
   m_ObjectHideFlags: 0

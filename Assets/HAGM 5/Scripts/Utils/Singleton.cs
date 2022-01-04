@@ -10,6 +10,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
+
     public virtual void Awake ()
     {
         if (instance == null)

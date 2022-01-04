@@ -9,6 +9,7 @@ public class InteractableTree : InteractableGameElement
 {
 	[Title("References")]
 	[SerializeField] private SpriteRenderer m_spriteRenderer;
+	[SerializeField] private Sprite[] m_spriteArray;
 	[SerializeField] private Transform m_transformToTween;
 
 	[Title("Ghost Settings")]
@@ -36,6 +37,11 @@ public class InteractableTree : InteractableGameElement
 		m_spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
+	private void Awake ()
+	{
+		m_spriteRenderer.sprite = m_spriteArray[Random.Range(0, m_spriteArray.Length - 1)];
+		m_spriteRenderer.flipX = Random.Range(0, 2) == 0;
+	}
 
 	protected override void OnDestroy ()
 	{
