@@ -18,22 +18,34 @@ public class TreeManager : Singleton<TreeManager>
 	{
 		TreeEntity.onTreeDestroyed -= RemoveAndSpawnTree;
 	}
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 	private void OnDrawGizmosSelected ()
 	{
 		Gizmos.DrawWireSphere(transform.position, m_spawnRadius);
 	}
-	#endif
+#endif
 
 	private void RemoveAndSpawnTree ( TreeEntity treeEntity )
 	{
 		if (m_treeList.Contains(treeEntity))
 		{
 			m_treeList.Remove(treeEntity);
-			Vector2 randomPos = Random.insideUnitCircle;
-			TreeEntity newTree = Instantiate(m_treePrefab, GameManager.playerController.transform.position + new Vector3(randomPos.x, 0, randomPos.y) * m_spawnRadius, Quaternion.identity, transform);
-			newTree.SpawnAnimation();
-			m_treeList.Add(newTree);
+
+			SpawnTree(GetRandomPositionAroundPlayerInRadius());
 		}
+	}
+
+	public Vector3 GetRandomPositionAroundPlayerInRadius ()
+	{
+		Vector2 randomPos = Random.insideUnitCircle;
+		return GameManager.playerController.transform.position + new Vector3(randomPos.x, 0, randomPos.y) * m_spawnRadius;
+	}
+
+	public void SpawnTree ( Vector3 position )
+	{
+		Vector2 randomPos = Random.insideUnitCircle;
+		TreeEntity newTree = Instantiate(m_treePrefab, position, Quaternion.identity, transform);
+		newTree.SpawnAnimation();
+		m_treeList.Add(newTree);
 	}
 }

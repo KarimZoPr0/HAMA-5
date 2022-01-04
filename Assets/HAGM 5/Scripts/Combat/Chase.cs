@@ -14,7 +14,7 @@ public class Chase : MonoBehaviour {
 	public void SetChase() {
 		Elemental[] enemies          = FindObjectsOfType<Elemental>();
 		float       shortestDistance = Mathf.Infinity;
-		GameObject  nearestEnemy     = null;
+		Elemental nearestEnemy     = null;
 		foreach (var enemy in enemies)
 		{
 			if(!GetComponent<Elemental>().element.defeatAbleElements.Contains(enemy.element)) continue;
@@ -22,11 +22,11 @@ public class Chase : MonoBehaviour {
 			if (distanceToEnemy < shortestDistance)
 			{
 				shortestDistance = distanceToEnemy;
-				nearestEnemy     = enemy.gameObject;
+				nearestEnemy     = enemy;
 			}
 		}
 
-		target = nearestEnemy != null && shortestDistance <= chaseDistance ? nearestEnemy.transform : null;
+		target = nearestEnemy != null && shortestDistance <= chaseDistance && nearestEnemy.isAlive ? nearestEnemy.transform : null;
 	}
 	
 	void OnDrawGizmosSelected ()

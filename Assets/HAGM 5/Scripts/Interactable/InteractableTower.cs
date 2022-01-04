@@ -8,6 +8,7 @@ using UnityEngine.AI;
 public class InteractableTower : InteractableGameElement
 {
 	[Title("References")]
+	[SerializeField] private Tower m_tower;
 	public SpriteRenderer spriteRenderer;
 	[SerializeField] private BoxCollider m_boxCollider;
 	[SerializeField] private NavMeshObstacle m_navMeshObstacle;
@@ -20,10 +21,11 @@ public class InteractableTower : InteractableGameElement
 
 	private void Awake ()
 	{
+		m_tower.canFire = false;
 		m_interactable = false;
 		m_boxCollider.isTrigger = false;
 		m_navMeshObstacle.enabled = false;
-		GameObjectUtils.RemoveStaticRecursively(m_tower.gameObject);
+		GameObjectUtils.RemoveStaticRecursively(m_towerEntity.gameObject);
 	}
 
 	protected override void OnDestroy ()
@@ -32,19 +34,20 @@ public class InteractableTower : InteractableGameElement
 		m_transformTween?.Kill();
 	}
 
-	private TowerEntity m_tower;
+	private TowerEntity m_towerEntity;
 	public void OnPlaced()
 	{
+		m_tower.canFire = true;
 		m_interactable = true;
 		m_navMeshObstacle.enabled = true;
 		m_boxCollider.enabled = true;
-		GameObjectUtils.SetStaticRecursively(m_tower.gameObject);
+		GameObjectUtils.SetStaticRecursively(m_towerEntity.gameObject);
 		RemoveGhostMode();
 	}
 
 	public void SetupTower ( TowerEntity tower )
 	{
-		m_tower = tower;
+		m_towerEntity = tower;
 	}	
 
 	protected override void Interact ()
@@ -54,11 +57,12 @@ public class InteractableTower : InteractableGameElement
 
 	protected override void TryToInteract ()
 	{
+		m_tower.canFire = false;
 		m_interactable = false;
 		m_boxCollider.isTrigger = false;
 		m_navMeshObstacle.enabled = false;
-		GameObjectUtils.RemoveStaticRecursively(m_tower.gameObject);
-		TowerManager.Instance.GrabTower(m_tower);
+		GameObjectUtils.RemoveStaticRecursively(m_towerEntity.gameObject);
+		TowerManager.Instance.GrabTower(m_towerEntity);
 	}
 
 	protected override IEnumerator InteractCR ()

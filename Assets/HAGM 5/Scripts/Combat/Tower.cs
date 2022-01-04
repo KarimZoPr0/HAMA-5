@@ -35,5 +35,4 @@ public class Tower : MonoBehaviour {
 
 		bullet.Seek(chase.target);
 	}
-	
 }

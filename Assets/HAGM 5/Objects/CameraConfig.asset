@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
   panScreenPercent: 0.05
-  panSpeed: 8
+  panSpeed: 15
   zoomSpeed: 50
   zoomFovMax: 100
   zoomFovMin: 20

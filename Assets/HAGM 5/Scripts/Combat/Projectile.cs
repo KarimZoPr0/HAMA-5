@@ -30,7 +30,8 @@ public class Projectile : MonoBehaviour {
 	
 
 	public void HitTarget() {
-		Debug.Log("HIT TARGET");
+		UnitHealth unitHealth = target.GetComponent<UnitHealth>();
+		unitHealth.TakeDamage(this.GetComponent<DamageDealer>());
 		Destroy(gameObject, 2f);
 	}
 }

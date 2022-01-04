@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91dce708595fb3144967526f197b216b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tower: {fileID: 4484941074361030118}
   spriteRenderer: {fileID: 5702281672127133951}
   m_boxCollider: {fileID: 5702281672127133945}
   m_navMeshObstacle: {fileID: 7017714629624103834}
@@ -204,6 +205,7 @@ GameObject:
   - component: {fileID: 2414747558419424395}
   - component: {fileID: 4484941074361030118}
   - component: {fileID: -7772460168583462071}
+  - component: {fileID: 3724071003610798422}
   m_Layer: 6
   m_Name: Tower
   m_TagString: Untagged
@@ -254,8 +256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08e746254f26834caad0af5e054b122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
   fireRate: 1
+  canFire: 0
+  chase: {fileID: 3724071003610798422}
   projectile: {fileID: 2797787545635368120, guid: 8b06e2db29a39054688d04fe31976a32, type: 3}
   firePoint: {fileID: 5702281672127133949}
 --- !u!114 &-7772460168583462071
@@ -271,3 +274,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: {fileID: 11400000, guid: 268fd41a1692cfa4198e2f6d342dbdb3, type: 2}
+--- !u!114 &3724071003610798422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702281672338960665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0cedd9835aa8c74ebc3980b0c0a93bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 8
