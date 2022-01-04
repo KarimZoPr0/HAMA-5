@@ -388,6 +388,10 @@ PrefabInstance:
       propertyPath: m_playerTransform
       value: 
       objectReference: {fileID: 1354959002}
+    - target: {fileID: 6507956371334483494, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
+      propertyPath: field of view
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 6507956371922513856, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -435,6 +439,10 @@ PrefabInstance:
     - target: {fileID: 6507956371922513857, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
       propertyPath: m_Name
       value: CameraManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507956372053792273, guid: 56ef460befae0454f8813768f4eb810d, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ef460befae0454f8813768f4eb810d, type: 3}

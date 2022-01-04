@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
 
 [CustomPropertyDrawer(typeof(FloatReference))]
 public class FloatReferenceDrawer : PropertyDrawer {
@@ -53,3 +54,4 @@ public class FloatReferenceDrawer : PropertyDrawer {
         EditorGUI.EndProperty();
     }
 }
+#endif
