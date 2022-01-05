@@ -4,12 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Chase : MonoBehaviour {
-	public Transform target { get; private set; }
+	public Transform target;
 	public float     chaseDistance;
+	public Transform RangeSprite;
 
 	void Start () {
+		var towerRange  = chaseDistance * 2;
+		if (RangeSprite != null) {
+			SetSpriteRange(towerRange);
+		}
 		InvokeRepeating("SetChase", 0f, 0.5f);
 	}
+
+	private void SetSpriteRange(float towerRange) {
+		RangeSprite.localScale = new Vector3(towerRange, towerRange, towerRange);
+	}
+
 
 	public void SetChase() {
 		Elemental[] enemies          = FindObjectsOfType<Elemental>();
@@ -26,7 +36,7 @@ public class Chase : MonoBehaviour {
 			}
 		}
 
-		target = nearestEnemy != null && shortestDistance <= chaseDistance && nearestEnemy.isAlive ? nearestEnemy.transform : null;
+		target = nearestEnemy != null && shortestDistance <= chaseDistance && nearestEnemy ? nearestEnemy.transform : null;
 	}
 	
 	void OnDrawGizmosSelected ()
