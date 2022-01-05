@@ -10,7 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcec693931a054a46b232a83967c4a6f, type: 3}
-  m_Name: Portuguese
+  m_Name: fortress
   m_EditorClassIdentifier: 
-  defeatAbleElements:
-  - {fileID: 11400000, guid: edade464f8063af4788a3d4cb6d877dd, type: 2}
+  defeatAbleElements: []

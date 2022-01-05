@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - fortress
+  - patrolPath
   layers:
   - Default
   - TransparentFX

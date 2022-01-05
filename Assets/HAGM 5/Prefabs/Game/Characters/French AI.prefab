@@ -108,7 +108,8 @@ GameObject:
   - component: {fileID: 6669483221877866681}
   - component: {fileID: 6669483221877866684}
   - component: {fileID: 1263322523}
-  - component: {fileID: 8472928048862946054}
+  - component: {fileID: 8376156037631232510}
+  - component: {fileID: 8761736019989455379}
   m_Layer: 0
   m_Name: French AI
   m_TagString: Untagged
@@ -141,11 +142,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 12
+  m_Speed: 5
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 0.7
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -179,12 +180,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: 1
+  target: {fileID: 0}
+  chase: {fileID: 8376156037631232510}
+  chaseDistance: 0
   boundsBox:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  patrolPoints: []
+    m_Center: {x: 0, y: 0, z: -8.6}
+    m_Extent: {x: 10, y: 5, z: 10}
+  damageDealer: {fileID: 8761736019989455379}
+  timeBetweenAttacks: 1
+  canAttackFortress: 0
   randomSequence: 0
---- !u!114 &8472928048862946054
+--- !u!114 &8376156037631232510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,12 +199,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6669483221877866686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f2b4507ff5678b4ab90676681af2b80, type: 3}
+  m_Script: {fileID: 11500000, guid: a0cedd9835aa8c74ebc3980b0c0a93bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_navMeshAgent: {fileID: 6669483221877866681}
-  m_spriteRenderer: {fileID: 0}
-  isMoving: 0
+  target: {fileID: 0}
+  chaseDistance: 10
+  RangeSprite: {fileID: 0}
+--- !u!114 &8761736019989455379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669483221877866686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df29622ea4fb6f4781ca82516e1b6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 50cd09ff812cf9e409a7b135fa7bbf3c, type: 2}
 --- !u!1 &6669483222163887519
 GameObject:
   m_ObjectHideFlags: 0

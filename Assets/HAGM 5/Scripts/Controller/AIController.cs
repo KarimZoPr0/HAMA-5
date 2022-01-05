@@ -2,235 +2,198 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Modules.UnityMathematics.Editor;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public enum BehaviourState { none, wander, patrol, chase, attack }
+public enum BehaviourState {none, wander, patrol, chase, attack}
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class AIController : MonoBehaviour
-{
-	public BehaviourState initialState;
-	public Transform target;
-	public float chaseDistance;
-	public float waypointDwellTime;
-	[SerializeField] UnitHealth m_unitHealth;
+public class AIController : MonoBehaviour {
+   public BehaviourState initialState;
+   public UnitHealth     target;
+   public Chase          chase;
+   public float          chaseDistance;
+   
+   [Title("Wander Settings")]
+   public Bounds boundsBox;
 
-	[Title("Wander Settings")]
-	public Bounds boundsBox;
+   [Title("Patrol Settings")] 
+   private List<Transform> patrolPoints;
 
-	[Title("Patrol Settings")]
+   [Title("Attack Settings")] 
+   public DamageDealer damageDealer;
+   public float timeBetweenAttacks          = 1f;
+   public bool  canAttackFortress = false;
+   
+   private float timeSinceLastAttack = 0f;
 
-	public Transform[] patrolPoints;
-	public bool randomSequence = false;
+   public bool randomSequence = false;
+   
 
-	[Title("Attack Settings")]
-	public float weaponRange;
+   private NavMeshAgent   agent;
+   private Vector3        targetPos;
+   private BehaviourState currentState = BehaviourState.none;
 
-	private NavMeshAgent agent;
-	private Vector3 targetPos;
-	private BehaviourState currentState = BehaviourState.none;
+   private PatrolPath   _patrolPath;
 
-	private Coroutine m_coroutine;
+   private void Awake() {
+      _patrolPath  = FindObjectOfType<PatrolPath>();
+      patrolPoints = _patrolPath.patrolPoints;
+      agent        = GetComponent<NavMeshAgent>();
+   }
 
-	private void Awake ()
-	{
-		agent = GetComponent<NavMeshAgent>();
+   private void Start() {
+      if(canAttackFortress) {
+         UnitHealth fortress = GameObject.FindGameObjectWithTag("fortress").GetComponent<UnitHealth>();
+         target = fortress;
+      }
+      else {
+         chaseDistance = chase.chaseDistance;
+      }
+      SetState(initialState);
+   }
 
-		m_unitHealth.onDeath += OnDeath;
-	}
+   private void SetState(BehaviourState state) {
+      if (currentState != state) {
+         currentState = state;
+         if (currentState == BehaviourState.wander) {
+            FindWanderTarget();
+         }
+         else if (currentState == BehaviourState.patrol) {
+            GoToNextPatrolPoint(randomSequence);
+         }
+      }
+   }
 
-	private void OnDestroy ()
-	{
-		m_unitHealth.onDeath -= OnDeath;
-	}
+   private void Update() {
+      
+      if (chase != null && chase.target != null) {
+         target = chase.target.GetComponent<UnitHealth>();
+      }
+      if (target != null) {
+         
+         float targetDistance = Vector3.Distance(transform.position, target.transform.position);
+         bool  canAttack      = targetDistance < chaseDistance / 2;
+         
+         if (targetDistance < chaseDistance) {
+            if (currentState != BehaviourState.chase) {
+               SetState(BehaviourState.chase);
+            }
+            else {
+               if(!canAttack) {
+                  targetPos = target.transform.position;
+                  agent.SetDestination(targetPos);
+               }
+               if (agent.isStopped || canAttack) {
+                  
+                  if(timeSinceLastAttack <= 0) {
+                     Attack();
+                     timeSinceLastAttack = 1f / timeBetweenAttacks;
+                  }
+                  timeSinceLastAttack -= Time.deltaTime;
+               }
+            }
+         }
+         else {
+            SetState(initialState);
+         }
+      }
+      
+      float distance = Vector3.Distance(targetPos, transform.position);
+      if (distance <= agent.stoppingDistance) {
+         agent.isStopped = true;
+         if (currentState == BehaviourState.wander) {
+            FindWanderTarget();
+         }
+         else if (currentState == BehaviourState.patrol) {
+            GoToNextPatrolPoint(randomSequence);
+         }
+      }
+      else if (agent.isStopped == true) {
+         agent.isStopped = false;
+      }
+   }
 
-	private void OnDeath()
-	{
-		agent.enabled = false;
+   private void Attack() {
+      target.TakeDamage(damageDealer);
+      if (!canAttackFortress) {
+         target.GetComponent<NavMeshAgent>().speed -= 1f;
+      }
+   }
 
-		if (m_coroutine != null)
-			StopCoroutine(m_coroutine);
-	}
+   private void FindWanderTarget() {
+      targetPos = GetRandomPoint();
+      agent.SetDestination(targetPos);
+      agent.isStopped = false;
+   }
 
-	private void SetState ( BehaviourState state )
-	{
-		if (currentState != state)
-		{
-			currentState = state;
-			if (currentState == BehaviourState.wander)
-			{
-				Debug.Log("Wander State started");
-				StartCoroutine(FindWanderTarget());
-			}
-			else if (currentState == BehaviourState.patrol)
-			{
-				StartCoroutine(GoToNextPatrolPoint(randomSequence));
-			}
-		}
-	}
+   Vector3 GetRandomPoint() {
+      float randomX = Random.Range(-boundsBox.extents.x + agent.radius + boundsBox.center.x, boundsBox.extents.x - agent.radius);
+      float randomZ = Random.Range(-boundsBox.extents.z + agent.radius + boundsBox.center.z, boundsBox.extents.z - agent.radius);
+      return new Vector3(randomX, transform.position.y, randomZ);
+   }
 
-	private void Update ()
-	{
-		if (!m_unitHealth.isAlive)
-			return;
+   private void GoToNextPatrolPoint(bool random = false) {
+      if (random == false) {
+         targetPos = GetPatrolPoint();
+      }
+      else {
+         targetPos = GetPatrolPoint(true);
+      }
 
-		if (target != null)
-		{
-			bool inWeaponRange = Vector3.Distance(transform.position, target.position) < weaponRange;
-			if (inWeaponRange)
-			{
-				if (currentState != BehaviourState.attack)
-				{
-					SetState(BehaviourState.attack);
-					Debug.Log("ATTACK STATE");
-				}
-				else
-				{
-					targetPos = target.position;
-					// Do Some Attack Stuff
-				}
-			}
-			float targetDistance = Vector3.Distance(transform.position, target.position);
-			if (targetDistance < chaseDistance)
-			{
-				if (currentState != BehaviourState.chase)
-				{
-					SetState(BehaviourState.chase);
-					Debug.Log("CHASE STATE");
-				}
-				else
-				{
-					targetPos = target.position;
-					agent.SetDestination(targetPos);
-				}
-			}
-			else
-			{
-				SetState(initialState);
-			}
-		}
+      agent.SetDestination(targetPos);
+      agent.isStopped = false;
+   }
 
-		float distance = Vector3.Distance(targetPos, transform.position);
-		if (distance <= agent.stoppingDistance)
-		{
-			agent.isStopped = true;
-			if (currentState == BehaviourState.wander)
-			{
-				if (m_coroutine != null)
-					StopCoroutine(m_coroutine);
+   private Vector3 GetPatrolPoint(bool random = false) {
+      var patrolPoints = this.patrolPoints;
+      if (random == false) {
+         if (targetPos == Vector3.zero) {
+            return patrolPoints[0].position;
+         }
+         else {
+            for (var i = 0; i < patrolPoints.Count; i++) {
+               if (patrolPoints[i].position == targetPos) {
+                  if (i + 1 >= patrolPoints.Count) {
+                     return patrolPoints[0].position;
+                  }
+                  else {
+                     return patrolPoints[i + 1].position;
+                  }
+               }
+               
+            }
+            return GetClosestPatrolPoint();
+         }
+      }
+      else {
+         return patrolPoints[Random.Range(0, patrolPoints.Count)].position;
+      }
+   }
 
-				m_coroutine = StartCoroutine(FindWanderTarget());
-			}
-			else if (currentState == BehaviourState.patrol)
-			{
-				if (m_coroutine != null)
-					StopCoroutine(m_coroutine);
-				
-				m_coroutine = StartCoroutine(GoToNextPatrolPoint(randomSequence));
-			}
-		}
-		else if (agent.isStopped)
-		{
-			agent.isStopped = false;
-		}
-	}
+   private Vector3 GetClosestPatrolPoint() {
+      Transform closest = null;
+      foreach (var patrolPoint in patrolPoints) {
+         if (closest == null) {
+            closest = patrolPoint;
+         }
+         else if (Vector3.Distance(transform.position, patrolPoint.position) <
+                  Vector3.Distance(transform.position, closest.position)) {
+            closest = patrolPoint;
+         }
+      }
 
-
-	private IEnumerator FindWanderTarget ()
-	{
-		targetPos = GetRandomPoint();
-		yield return new WaitForSeconds(waypointDwellTime);
-		agent.SetDestination(targetPos);
-		agent.isStopped = false;
-	}
-
-	Vector3 GetRandomPoint ()
-	{
-		float randomX = Random.Range(-boundsBox.extents.x + agent.radius, boundsBox.extents.x - agent.radius);
-		float randomZ = Random.Range(-boundsBox.extents.z + agent.radius, boundsBox.extents.z - agent.radius);
-		return new Vector3(randomX, transform.position.y, randomZ);
-	}
-
-	private IEnumerator GoToNextPatrolPoint ( bool random = false )
-	{
-		if (random == false)
-		{
-			targetPos = GetPatrolPoint();
-		}
-		else
-		{
-			targetPos = GetPatrolPoint(true);
-		}
-		yield return new WaitForSeconds(waypointDwellTime);
-		agent.SetDestination(targetPos);
-		agent.isStopped = false;
-	}
-
-	private Vector3 GetPatrolPoint ( bool random = false )
-	{
-		if (random == false)
-		{
-			if (targetPos == Vector3.zero)
-			{
-				return patrolPoints[0].position;
-			}
-			else
-			{
-				for (var i = 0; i < patrolPoints.Length; i++)
-				{
-					if (patrolPoints[i].position == targetPos)
-					{
-						if (i + 1 >= patrolPoints.Length)
-						{
-							return patrolPoints[0].position;
-						}
-						else
-						{
-							return patrolPoints[i + 1].position;
-						}
-					}
-
-				}
-				return GetClosestPatrolPoint();
-			}
-		}
-		else
-		{
-			return patrolPoints[Random.Range(0, patrolPoints.Length)].position;
-		}
-	}
-
-	private Vector3 GetClosestPatrolPoint ()
-	{
-		Transform closest = null;
-		foreach (var patrolPoint in patrolPoints)
-		{
-			if (closest == null)
-			{
-				closest = patrolPoint;
-			}
-			else if (Vector3.Distance(transform.position, patrolPoint.position) <
-					 Vector3.Distance(transform.position, closest.position))
-			{
-				closest = patrolPoint;
-			}
-		}
-
-		return closest.position;
-	}
-	private void OnDrawGizmos ()
-	{
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireCube(boundsBox.center, boundsBox.size);
-		Gizmos.color = Color.red;
-		Gizmos.DrawSphere(targetPos, 0.2f);
-		Gizmos.color = Color.grey;
-		Gizmos.DrawWireSphere(transform.position, chaseDistance);
-		Gizmos.color = Color.blue;
-		Gizmos.DrawWireSphere(transform.position, weaponRange);
-
-	}
-
+      return closest.position;
+   }
+   private void OnDrawGizmosSelected() {
+      Gizmos.color = Color.yellow;
+      Gizmos.DrawWireCube(boundsBox.center, boundsBox.size);
+      Gizmos.color = Color.red;
+      Gizmos.DrawSphere(targetPos, 0.2f);
+      Gizmos.color = Color.blue;
+      Gizmos.DrawWireSphere(transform.position, chaseDistance);
+   }
+   
 }
