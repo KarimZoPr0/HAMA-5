@@ -103,7 +103,11 @@ RectTransform:
   m_GameObject: {fileID: 1423489679654945028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 129}
+<<<<<<< HEAD
   m_LocalScale: {x: 1.3287628, y: 0.3672028, z: 0.68164474}
+=======
+  m_LocalScale: {x: 0.65504694, y: 0.3672028, z: 0.68164474}
+>>>>>>> 61b378b81ed6b31cfaccfc5a12c66c5092f74bdd
   m_Children:
   - {fileID: 1213741177803959884}
   - {fileID: 1214338443230313462}
@@ -536,8 +540,13 @@ MonoBehaviour:
   HP: 0
   ResetHP: 1
   StartingHP:
+<<<<<<< HEAD
     UseConstant: 1
     ConstantValue: 300
+=======
+    UseConstant: 0
+    ConstantValue: 0
+>>>>>>> 61b378b81ed6b31cfaccfc5a12c66c5092f74bdd
     Variable: {fileID: 11400000, guid: 02fcdb53a0e4d994abc8ee0b30af8764, type: 2}
   DamageEvent:
     m_PersistentCalls:

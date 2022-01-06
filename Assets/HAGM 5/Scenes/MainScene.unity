@@ -365,7 +365,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.x
+<<<<<<< HEAD
       value: 21.07
+=======
+      value: 10
+>>>>>>> 61b378b81ed6b31cfaccfc5a12c66c5092f74bdd
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.z
@@ -563,10 +567,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903739812417927154}
     m_Modifications:
+<<<<<<< HEAD
     - target: {fileID: 1424540978789263638, guid: 419960b555e2b194488274033d9433e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+=======
+>>>>>>> 61b378b81ed6b31cfaccfc5a12c66c5092f74bdd
     - target: {fileID: 1424540979858136724, guid: 419960b555e2b194488274033d9433e0, type: 3}
       propertyPath: m_Name
       value: Fortress
@@ -928,7 +935,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.x
+<<<<<<< HEAD
       value: 21.07
+=======
+      value: 10
+>>>>>>> 61b378b81ed6b31cfaccfc5a12c66c5092f74bdd
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.z
@@ -1855,8 +1866,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903739812417927154}
+<<<<<<< HEAD
   - component: {fileID: 1903739812417927157}
   - component: {fileID: 1903739812417927156}
+=======
+>>>>>>> 61b378b81ed6b31cfaccfc5a12c66c5092f74bdd
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -1864,6 +1878,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!114 &1903739812417927156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,6 +1935,8 @@ MonoBehaviour:
           m_StringArgument: damage
           m_BoolArgument: 0
         m_CallState: 2
+=======
+>>>>>>> 61b378b81ed6b31cfaccfc5a12c66c5092f74bdd
 --- !u!4 &1903739812616436060
 Transform:
   m_ObjectHideFlags: 0
