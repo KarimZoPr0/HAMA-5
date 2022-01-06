@@ -188,6 +188,7 @@ MonoBehaviour:
     m_Extent: {x: 10, y: 5, z: 10}
   damageDealer: {fileID: 8761736019989455379}
   timeBetweenAttacks: 1
+  slowDown: 1
   canAttackFortress: 0
   randomSequence: 0
 --- !u!114 &8376156037631232510

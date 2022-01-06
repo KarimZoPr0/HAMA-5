@@ -71,8 +71,7 @@ public class AIController : MonoBehaviour {
 
    private void Update() {
       
-      
-      if (chase != null && chase.target != null) {
+      if (chase != null && chase.target != null && chase.target) {
          target = chase.target.GetComponent<UnitHealth>();
       }
       

@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using Image = UnityEngine.UI.Image;
 
@@ -63,8 +64,9 @@ public class UnitHealth : MonoBehaviour
 
 	public void TakeDamage (DamageDealer damage)
 	{
-		if (!isAlive)
+		if (!isAlive) {
 			return;
+		}
 
 		if (damage != null)
 		{
