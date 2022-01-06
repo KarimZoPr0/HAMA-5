@@ -24,7 +24,9 @@ public class AIController : MonoBehaviour {
 
    [Title("Attack Settings")] 
    public DamageDealer damageDealer;
-   public float timeBetweenAttacks          = 1f;
+   public float timeBetweenAttacks = 1f;
+   [HideIf("canAttackFortress", false)]
+   public float slowDown;
    public bool  canAttackFortress = false;
    
    private float timeSinceLastAttack = 0f;
@@ -69,15 +71,17 @@ public class AIController : MonoBehaviour {
 
    private void Update() {
       
+      
       if (chase != null && chase.target != null) {
          target = chase.target.GetComponent<UnitHealth>();
       }
+      
       if (target != null) {
-         
+
          float targetDistance = Vector3.Distance(transform.position, target.transform.position);
          bool  canAttack      = targetDistance < chaseDistance / 2;
          
-         if (targetDistance < chaseDistance) {
+         if (targetDistance < chaseDistance && target.isAlive) {
             if (currentState != BehaviourState.chase) {
                SetState(BehaviourState.chase);
             }
@@ -100,7 +104,7 @@ public class AIController : MonoBehaviour {
             SetState(initialState);
          }
       }
-      
+
       float distance = Vector3.Distance(targetPos, transform.position);
       if (distance <= agent.stoppingDistance) {
          agent.isStopped = true;
@@ -111,15 +115,16 @@ public class AIController : MonoBehaviour {
             GoToNextPatrolPoint(randomSequence);
          }
       }
-      else if (agent.isStopped == true) {
+      else if (agent.isStopped) {
          agent.isStopped = false;
       }
+      
    }
 
    private void Attack() {
       target.TakeDamage(damageDealer);
       if (!canAttackFortress) {
-         target.GetComponent<NavMeshAgent>().speed -= 1f;
+         target.GetComponent<NavMeshAgent>().speed -= slowDown;
       }
    }
 

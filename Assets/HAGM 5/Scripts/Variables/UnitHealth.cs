@@ -70,11 +70,13 @@ public class UnitHealth : MonoBehaviour
 		{
 			HP -= damage.damageAmount;
 			DamageEvent.Invoke();
+			OnHit();
 		}
 
 		if (HP <= 0.0f)
 		{
 			DeathEvent.Invoke();
+			OnDeath();
 		}
 
 		SetFillAmount();

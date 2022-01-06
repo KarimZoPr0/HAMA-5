@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.x
-      value: 10
+      value: 21.07
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.z
@@ -563,6 +563,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903739812417927154}
     m_Modifications:
+    - target: {fileID: 1424540978789263638, guid: 419960b555e2b194488274033d9433e0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1424540979858136724, guid: 419960b555e2b194488274033d9433e0, type: 3}
       propertyPath: m_Name
       value: Fortress
@@ -924,7 +928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.x
-      value: 10
+      value: 21.07
       objectReference: {fileID: 0}
     - target: {fileID: 1263322523, guid: 5d0f657cf6565f9468b92d313d0c4873, type: 3}
       propertyPath: boundsBox.m_Extent.z
@@ -1851,6 +1855,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903739812417927154}
+  - component: {fileID: 1903739812417927157}
+  - component: {fileID: 1903739812417927156}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -1858,6 +1864,62 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1903739812417927156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903739812417927155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc59a41dac0b8e4aa1976fc9a1e6b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7d948f544aea9044dbf8257eb57bfc34, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 23620470}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: death
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1903739812417927157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903739812417927155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc59a41dac0b8e4aa1976fc9a1e6b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7d948f544aea9044dbf8257eb57bfc34, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 23620470}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: damage
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1903739812616436060
 Transform:
   m_ObjectHideFlags: 0
