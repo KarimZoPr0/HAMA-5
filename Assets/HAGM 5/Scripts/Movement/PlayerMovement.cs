@@ -43,38 +43,12 @@ public class PlayerMovement : MonoBehaviour
 	public Animator anim;
 	public TMP_Text State;
 	private void Update () {
-		var  x = m_navMeshAgent.velocity.x;
-		var  z = m_navMeshAgent.velocity.z;
-		
-		bool a = x > z;
-		bool b = x > -z;
-		if (a && b) {
-			State.text             = "right";
-			m_spriteRenderer.flipX = true;
-			ChangeAnimationState(WALK_HORIZONTAL);
-		}   
 
-		if (!a && !b) {
-			State.text             = "left";
-			m_spriteRenderer.flipX = false;
-			ChangeAnimationState(WALK_HORIZONTAL);
-		} // left
-
-		if (!a && b) {
-			State.text = "up";
-			ChangeAnimationState(WALK_BACKWARD);
-		}   // up
-
-		if (a && !b) {
-			State.text = "down";
-			ChangeAnimationState(WALK_FORWARD);
-		} // down
-		else {
-			ChangeAnimationState("none");
-		}
-					
 		if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && !InputManager.grabLocked && InputManager.pointerIn && Input.GetMouseButton(1))
 			MoveOnClick();
+
+		if (!isMoving) return;
+		HandleAnimations();
 	}
 
 	private void MoveOnClick ()
@@ -103,19 +77,40 @@ public class PlayerMovement : MonoBehaviour
 		m_navMeshAgent.destination = destination;
 		yield return null;
 
-		while (m_navMeshAgent.remainingDistance >= .1f)
-		{
-			if (m_navMeshAgent.velocity.x < 0.05f)
-				m_spriteRenderer.flipX = true;
-			else if (m_navMeshAgent.velocity.x > 0.05f)
-				m_spriteRenderer.flipX = false;
-
-			yield return null;
-		}
+		HandleAnimations();
 
 		isMoving = false;
 		OnDestinationReached?.Invoke();
 		callback?.Invoke();
+	}
+
+	private void HandleAnimations() {
+		var x = m_navMeshAgent.velocity.x;
+		var z = m_navMeshAgent.velocity.z;
+               		
+		bool a = x > z;
+		bool b = x > -z;
+
+		switch (a) {
+			case true when b:
+				State.text             = "right";
+				m_spriteRenderer.flipX = false;
+				ChangeAnimationState(WALK_HORIZONTAL);
+				break;
+			case false when !b:
+				State.text             = "left";
+				m_spriteRenderer.flipX = true;
+				ChangeAnimationState(WALK_HORIZONTAL); // left
+				break;
+			case false when b:
+				State.text = "up";
+				ChangeAnimationState(WALK_BACKWARD); // up
+				break;
+			case true when !b:
+				State.text = "down";
+				ChangeAnimationState(WALK_FORWARD); // down
+				break;
+		}
 	}
 
 	public void MoveToPosition ( Vector3 position, Action callback )
