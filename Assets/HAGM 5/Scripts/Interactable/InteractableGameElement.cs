@@ -78,7 +78,7 @@ public abstract class InteractableGameElement : MonoBehaviour
 
 	protected virtual void TryToInteract()
 	{
-		GameManager.playerController.MoveToInteract(transform.position - 2f * Vector3.forward + Random.Range(-.7f, .7f) * Vector3.right, Interact);
+		GameManager.playerController.MoveToInteract(transform.position - 1f * Vector3.forward + (Random.Range(0, 2) * 2 - 1) * Vector3.right, Interact);
 	}
 
 	protected virtual void Interact ()

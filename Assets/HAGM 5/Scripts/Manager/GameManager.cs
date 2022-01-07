@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-	[Title("References")]
+	[Title("Configs")]
 	[SerializeField] private CurrencyConfigs m_currencyConfigs;
+
+	[Title("References")]
 	[SerializeField] private PlayerController m_playerController;
 
 	public static CurrencyConfigs currencyConfigs => Instance.m_currencyConfigs;
@@ -60,9 +62,11 @@ public class GameManager : Singleton<GameManager>
 				break;
 			case GameState.MainScreen:
 				AudioManager.PlayMain("MainTheme");
+				AudioManager.PlayAmbient("AmbientTrack");
 				UIManager.OpenPanel(Panel.Type.Main, false);
 				break;
 			case GameState.InGame:
+				AudioManager.PlaySfx("Play");
 				UIManager.OpenPanel(Panel.Type.Game, true);
 				CurrencyManager.Init();
 				break;
@@ -80,7 +84,7 @@ public class GameManager : Singleton<GameManager>
 	[HideInInspector] public bool isPaused = false;
 	public void TogglePause ()
 	{
-		AudioManager.PlaySfx("Punch");
+		AudioManager.PlaySfx("Bop");
 
 		isPaused = !isPaused;
 

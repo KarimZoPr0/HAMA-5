@@ -20,6 +20,6 @@ MonoBehaviour:
     currencyCap: 0
   - name: Wood
     type: 1
-    sprite: {fileID: 21300000, guid: c5112cf36d36d084ea8baa1337b6e140, type: 3}
+    sprite: {fileID: 21300000, guid: 295ce51229ecab84dafb569e7734719c, type: 3}
     useCap: 0
     currencyCap: 0

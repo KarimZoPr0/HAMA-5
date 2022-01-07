@@ -31,6 +31,7 @@ public class TowerManager : Singleton<TowerManager>
 
 	public void GrabTower ( TowerEntity t )
 	{
+		AudioManager.PlaySfx("TreeChop", 1.2f);
 		InputManager.LockGrab();
 
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

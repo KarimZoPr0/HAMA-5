@@ -7,48 +7,35 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMovement : MonoBehaviour
 {
-	private const string WALK_FORWARD = "walk_forward";
-	private const string WALK_HORIZONTAL= "walk_horizontal";
-	private const string WALK_BACKWARD= "walk_backward";
-	private const string CHOP = "chop";
-	private const string ATTACK = "attack";
-	
-	
 	[SerializeField] private NavMeshAgent m_navMeshAgent;
-	[SerializeField] private SpriteRenderer m_spriteRenderer;
+	[SerializeField] private Animator[] m_animatorArray;
+
 	public static Action OnStartMovement;
 	public static Action OnDestinationReached;
 
-	
-
 	private Coroutine m_moveCoroutine;
-	public bool isMoving = false;
-
-	private string currentState;
-	private void Reset ()
+	private bool m_isMoving;
+	public bool IsMoving
 	{
-		if(m_navMeshAgent )
-		m_navMeshAgent = GetComponent<NavMeshAgent>();
+		get => m_isMoving;
+		set
+		{
+			m_isMoving = value;
+
+			foreach (Animator m_animator in m_animatorArray)
+				m_animator.SetBool("IsMoving", m_isMoving);
+		}
 	}
 
-
-	public void ChangeAnimationState(string newState) {
-		if (currentState == newState) return;
-		
-		anim.Play(newState);
-
-		currentState = newState;
+	private void Awake ()
+	{
+		m_oldPos = transform.position;
 	}
-	
-	public Animator anim;
-	public TMP_Text State;
-	private void Update () {
 
+	private void Update ()
+	{
 		if (GameManager.Instance.GameState == GameState.InGame && !GameManager.Instance.isPaused && !InputManager.grabLocked && InputManager.pointerIn && Input.GetMouseButton(1))
 			MoveOnClick();
-
-		if (!isMoving) return;
-		HandleAnimations();
 	}
 
 	private void MoveOnClick ()
@@ -70,47 +57,40 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+	private void LateUpdate ()
+	{
+		if (IsMoving && transform.position != m_oldPos)
+		{
+			Vector3 movement = (transform.position - m_oldPos) * 2f;
+
+			foreach (Animator m_animator in m_animatorArray)
+			{
+				m_animator.SetFloat("FacingX", Mathf.Clamp(movement.x, -1f, 1f));
+				m_animator.SetFloat("FacingZ", Mathf.Clamp(movement.z, -1f, 1f));
+			}
+			m_oldPos = transform.position;
+		}
+	}
+
+
+	private Vector3 m_oldPos;
 	IEnumerator MoveCR ( Vector3 destination, Action callback = null )
 	{
 		OnStartMovement?.Invoke();
-		isMoving = true;
+		IsMoving = true;
 		m_navMeshAgent.destination = destination;
+		m_oldPos = transform.position;
+
 		yield return null;
 
-		HandleAnimations();
+		while (m_navMeshAgent.remainingDistance >= .1f)
+		{
+			yield return null;
+		}
 
-		isMoving = false;
+		IsMoving = false;
 		OnDestinationReached?.Invoke();
 		callback?.Invoke();
-	}
-
-	private void HandleAnimations() {
-		var x = m_navMeshAgent.velocity.x;
-		var z = m_navMeshAgent.velocity.z;
-               		
-		bool a = x > z;
-		bool b = x > -z;
-
-		switch (a) {
-			case true when b:
-				State.text             = "right";
-				m_spriteRenderer.flipX = false;
-				ChangeAnimationState(WALK_HORIZONTAL);
-				break;
-			case false when !b:
-				State.text             = "left";
-				m_spriteRenderer.flipX = true;
-				ChangeAnimationState(WALK_HORIZONTAL); // left
-				break;
-			case false when b:
-				State.text = "up";
-				ChangeAnimationState(WALK_BACKWARD); // up
-				break;
-			case true when !b:
-				State.text = "down";
-				ChangeAnimationState(WALK_FORWARD); // down
-				break;
-		}
 	}
 
 	public void MoveToPosition ( Vector3 position, Action callback )
@@ -126,8 +106,20 @@ public class PlayerMovement : MonoBehaviour
 		float sign = position.x - transform.position.x;
 
 		if (sign < 0)
-			m_spriteRenderer.flipX = true;
+		{
+			foreach (Animator m_animator in m_animatorArray)
+			{
+				m_animator.SetFloat("FacingX", -1f);
+				m_animator.SetFloat("FacingZ", 0f);
+			}
+		}
 		else if (sign > 0)
-			m_spriteRenderer.flipX = false;
+		{
+			foreach (Animator m_animator in m_animatorArray)
+			{
+				m_animator.SetFloat("FacingX", 1f);
+				m_animator.SetFloat("FacingZ", 0f);
+			}
+		}
 	}
 }

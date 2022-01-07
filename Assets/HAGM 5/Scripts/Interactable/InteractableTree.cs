@@ -8,7 +8,8 @@ using UnityEngine;
 public class InteractableTree : InteractableGameElement
 {
 	[Title("References")]
-	[SerializeField] private SpriteRenderer m_spriteRenderer;
+	[SerializeField] private SpriteRenderer[] m_spriteRendererList;
+	private SpriteRenderer m_spriteRenderer => m_spriteRendererList[0];
 	[SerializeField] private Sprite[] m_spriteArray;
 	[SerializeField] private Transform m_transformToTween;
 
@@ -32,15 +33,16 @@ public class InteractableTree : InteractableGameElement
 
 	private Tweener m_transformTween;
 
-	private void Reset ()
-	{
-		m_spriteRenderer = GetComponent<SpriteRenderer>();
-	}
-
 	private void Awake ()
 	{
-		m_spriteRenderer.sprite = m_spriteArray[Random.Range(0, m_spriteArray.Length - 1)];
-		m_spriteRenderer.flipX = Random.Range(0, 2) == 0;
+		Sprite randomSprite = m_spriteArray[Random.Range(0, m_spriteArray.Length - 1)];
+		bool randomFlip = Random.Range(0, 2) == 0;
+
+		foreach (SpriteRenderer spriteRenderer in m_spriteRendererList)
+		{
+			spriteRenderer.sprite = randomSprite;
+			spriteRenderer.flipX = randomFlip;
+		}
 	}
 
 	protected override void OnDestroy ()
@@ -58,22 +60,22 @@ public class InteractableTree : InteractableGameElement
 		m_transformTween = m_transformToTween.DOScale(m_tweenBaseScale, m_tweenToBaseScaleTime);
 	}
 
-	protected override IEnumerator InteractCR()
+	protected override IEnumerator InteractCR ()
 	{
 		PlayerMovement.OnStartMovement += CancelInteraction;
 		m_transformTween = m_transformToTween.DOScale(m_tweenLoopFinalScale, m_tweenLoopTime).SetEase(Ease.InOutBack).SetLoops(-1, LoopType.Yoyo);
 		GameManager.playerController.RotateToPosition(transform.position);
 
-		AudioManager.PlaySfx("Chop");
+		AudioManager.PlaySfx("TreeChop", Random.Range(.9f, 1.1f));
 		yield return new WaitForSeconds(m_chopTime / 2f);
-		AudioManager.PlaySfx("Chop");
+		AudioManager.PlaySfx("TreeChop", Random.Range(.9f, 1.1f));
 		yield return new WaitForSeconds(m_chopTime / 2f);
 
 		PlayerMovement.OnStartMovement -= CancelInteraction;
 		m_interactable = false;
 		CurrencyManager.AddCurrency(Currency.Type.Wood, m_woodAmount);
 		CurrencyManager.AddCurrency(Currency.Type.Dye, m_dyeAmount);
-		AudioManager.PlaySfx("TreeCut");
+		// AudioManager.PlaySfx("TreeFall");
 
 		m_transformTween?.Kill();
 		m_transformTween = m_transformToTween.DOScale(m_tweenFinalScale, m_tweenTime).SetEase(m_tweenEase).OnComplete(() =>

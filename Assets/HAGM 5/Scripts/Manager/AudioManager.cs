@@ -12,6 +12,7 @@ public class AudioManager : Singleton<AudioManager>
 
 	[Title("Audio Sources")]
 	[SerializeField] private AudioSource m_mainSource;
+	[SerializeField] private AudioSource m_ambientSource;
 	[SerializeField] private AudioSource m_soundAudioSource;
 
 	[Title("Audio Clips")]
@@ -52,10 +53,27 @@ public class AudioManager : Singleton<AudioManager>
 			Debug.Log("AudioManager : Main / KeyNotFound : " + soundName);
 	}
 
-	public static void PlaySfx ( string soundName )
+	public static void PlayAmbient ( string soundName )
+	{
+		if (Instance.m_audioDictionary.ContainsKey(soundName))
+		{
+			if (Instance.m_ambientSource.isPlaying)
+				Instance.m_ambientSource.Stop();
+
+			Instance.m_ambientSource.clip = Instance.m_audioDictionary[soundName];
+			Instance.m_ambientSource.Play();
+		}
+		else
+			Debug.Log("AudioManager : Main / KeyNotFound : " + soundName);
+	}
+
+	public static void PlaySfx ( string soundName, float pitch = 1f)
 	{
 		if (Instance.m_sfxDictionary.ContainsKey(soundName))
+		{
+			Instance.m_soundAudioSource.pitch = pitch;
 			Instance.m_soundAudioSource.PlayOneShot(Instance.m_sfxDictionary[soundName]);
+		}
 		else
 			Debug.Log("AudioManager : SFX / KeyNotFound : " + soundName);
 	}

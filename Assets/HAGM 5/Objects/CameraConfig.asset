@@ -15,6 +15,6 @@ MonoBehaviour:
   panScreenPercent: 0.05
   panSpeed: 15
   zoomSpeed: 50
-  zoomFovMax: 100
+  zoomFovMax: 75
   zoomFovMin: 20
   zoomMultiplier: -250

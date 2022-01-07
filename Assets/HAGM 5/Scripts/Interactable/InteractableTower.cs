@@ -42,6 +42,7 @@ public class InteractableTower : InteractableGameElement
 		m_navMeshObstacle.enabled = true;
 		m_boxCollider.enabled = true;
 		GameObjectUtils.SetStaticRecursively(m_towerEntity.gameObject);
+		AudioManager.PlaySfx("TreeChop", 0.8f);
 		RemoveGhostMode();
 	}
 

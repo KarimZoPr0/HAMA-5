@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Portuguese
+  m_Controller: {fileID: 9100000, guid: 8f69b2d69036f394ca9e58ccb3d0af80, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 6bfce2ad5ec4b6044a2e6c96cef49970, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: abbed522aadf1d549b0542defa5f62e1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6041dcae16ced2546ad45efb5fa43f1c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a3a0fe09cfec2cd4ea2bc5f073442234, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e41a6e464ff37aa41b91d5870e82ac4a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 63ef4b6540437ae4b8fac29926ea0598, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0b169ae5f9c64264db0c1e6dfc7c2c5a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9cd160e35599be942832b55ddfdbfb8d, type: 2}

@@ -32,6 +32,7 @@ public class Tower : MonoBehaviour {
 	private void Shoot() {
 		GameObject bulletGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
 		Projectile bullet   = bulletGO.GetComponent<Projectile>();
+		AudioManager.PlaySfx("Shoot");
 
 		bullet.Seek(chase.target);
 	}

@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: R TO RESTART
+  m_text: R to restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 54b676a79a3b13844a140e1423a9c0a0, type: 2}
-  m_sharedMaterial: {fileID: 8073352996941018407, guid: 54b676a79a3b13844a140e1423a9c0a0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3c21dae29ef003941bd1a866bd3eafeb, type: 2}
+  m_sharedMaterial: {fileID: 3499027559178016138, guid: 3c21dae29ef003941bd1a866bd3eafeb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -169,7 +169,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 500}
+  m_SizeDelta: {x: 811.4, y: 347.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2732383040785205051
 CanvasRenderer:
@@ -199,17 +199,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: THANKS FOR PLAYING
+  m_text: Thanks For Playing
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 54b676a79a3b13844a140e1423a9c0a0, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 31d13de6f00f74a49a058908594eba0c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3c21dae29ef003941bd1a866bd3eafeb, type: 2}
+  m_sharedMaterial: {fileID: 3499027559178016138, guid: 3c21dae29ef003941bd1a866bd3eafeb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281860351
-  m_fontColor: {r: 1, g: 0, b: 0.21960784, a: 1}
+    rgba: 4286558695
+  m_fontColor: {r: 0.90588236, g: 0.69411767, b: 0.49803922, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -232,13 +232,13 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 16
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -27.4
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

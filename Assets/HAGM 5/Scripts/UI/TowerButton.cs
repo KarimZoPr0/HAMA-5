@@ -37,6 +37,9 @@ public class TowerButton : MonoBehaviour
 	private void TryBuyTower ()
 	{
 		if (CurrencyManager.GetCurrency(Currency.Type.Wood) >= m_towerPrefab.woodPrice)
+		{
+			AudioManager.PlaySfx("Bop", 0.8f);
 			TowerManager.Instance.StartDroppingTower(m_towerPrefab);
+		}
 	}
 }
