@@ -2,34 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CharacterAnim : MonoBehaviour {
     public Transform target;
 
-    [SerializeField] private TMP_Text velocity;
     [SerializeField] private TMP_Text stateLabel;
 
-    Vector3              oldPos;
-    Quaternion           oldRot;
-    public NavMeshAgent agent;
+    Vector3    oldPos;
+    Quaternion oldRot;
 
-    private void Update() {
-
-        velocity.text = agent.velocity.ToString();
-        if(agent.velocity.z > 0) {
+    private void Update(){
+        Vector3 movement = oldRot * (transform.position - oldPos);
+        if(movement.z > 0) {
             stateLabel.text = "forward";
-        } else if(agent.velocity.z < 0) {
+            // forward
+        } else if(movement.z < 0) {
             stateLabel.text = "backwards";
             // backwards
         }
-        if(agent.velocity.x > 0) {
+        if(movement.x > 0) {
             stateLabel.text = "right";
             // right
-        } else if(agent.velocity.x < 0) {
+        } else if(movement.x < 0) {
             stateLabel.text = "left";
             // left
         }
+        oldPos = transform.position;
+        oldRot = transform.rotation;
     }
 
 }

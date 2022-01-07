@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 1263322523}
   - component: {fileID: 8376156037631232510}
   - component: {fileID: 8761736019989455379}
+  - component: {fileID: 5361630643055972578}
   m_Layer: 0
   m_Name: French AI
   m_TagString: Untagged
@@ -222,6 +223,25 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 50cd09ff812cf9e409a7b135fa7bbf3c, type: 2}
+--- !u!95 &5361630643055972578
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669483221877866686}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f69b2d69036f394ca9e58ccb3d0af80, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6669483222163887519
 GameObject:
   m_ObjectHideFlags: 0
