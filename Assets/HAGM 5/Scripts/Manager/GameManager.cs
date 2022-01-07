@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
 
 	[Title("References")]
 	[SerializeField] private PlayerController m_playerController;
+	[SerializeField] private Spawner m_enemySpawner;
 
 	public static CurrencyConfigs currencyConfigs => Instance.m_currencyConfigs;
 	public static PlayerController playerController => Instance.m_playerController;
@@ -61,17 +62,20 @@ public class GameManager : Singleton<GameManager>
 			case GameState.None:
 				break;
 			case GameState.MainScreen:
-				AudioManager.PlayMain("MainTheme");
+				AudioManager.PlayMain("MenuTheme");
 				AudioManager.PlayAmbient("AmbientTrack");
 				UIManager.OpenPanel(Panel.Type.Main, false);
 				break;
 			case GameState.InGame:
+				AudioManager.PlayMain("GameTheme");
 				AudioManager.PlaySfx("Play");
 				UIManager.OpenPanel(Panel.Type.Game, true);
+				m_enemySpawner.canSpawn = true;
 				CurrencyManager.Init();
 				break;
 			case GameState.EndScreen:
 				if (isPaused) TogglePause();
+				AudioManager.PlayMain("EndTheme");
 				UIManager.OpenPanel(Panel.Type.End, true);
 				break;
 		}
@@ -106,6 +110,12 @@ public class GameManager : Singleton<GameManager>
 		if (GameState == GameState.InGame && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))) TogglePause();
 		if (GameState == GameState.InGame && Input.GetKeyDown(KeyCode.Return)) GameState = GameState.EndScreen;
 		if (GameState == GameState.EndScreen && Input.GetKeyDown(KeyCode.R)) Restart();
+	}
+
+	public void GameLose ()
+	{
+		if (GameState == GameState.InGame)
+			GameState = GameState.EndScreen;
 	}
 
 	private void Restart ()

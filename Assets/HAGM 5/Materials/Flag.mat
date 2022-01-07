@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character
+  m_Name: Flag
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: CUSTOMZTEST_ON DOODLE_ON FOG_ON GHOST_ON HITEFFECT_ON
+  m_ShaderKeywords: CUSTOMZTEST_ON FOG_ON HITEFFECT_ON WAVEUV_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -108,7 +108,7 @@ Material:
     - _FlickerAlpha: 0
     - _FlickerFreq: 0.2
     - _FlickerPercent: 0
-    - _GhostBlend: 0
+    - _GhostBlend: 0.5
     - _GhostColorBoost: 1.4
     - _GhostTransparency: 0.1
     - _GlitchAmount: 3
@@ -198,11 +198,11 @@ Material:
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _WaveAmount: 7
-    - _WaveSpeed: 10
-    - _WaveStrength: 7.5
+    - _WaveAmount: 1.18
+    - _WaveSpeed: 13.94
+    - _WaveStrength: 1.36
     - _WaveX: 0
-    - _WaveY: 0.5
+    - _WaveY: 0.728
     - _ZTestMode: 4
     - _ZWrite: 0
     - _ZoomUvAmount: 0.71

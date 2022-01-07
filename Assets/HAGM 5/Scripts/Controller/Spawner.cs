@@ -13,10 +13,10 @@ public class Spawner : MonoBehaviour {
 	private PatrolPath _patrolPath;
 	public  UnitHealth fortress;
 
-	public int   spawnLimit       = 1;
-	public float timeBetweenWaves = 5f;
+	public int   spawnLimit       = 10;
+	public float timeBetweenSpawn = 2f;
 	
-	private  int   enemiesNum = 1;
+	private  int   enemiesNum = 0;
 	private float countDown  = 2f;
 	private int   waveNum = 1;
 	
@@ -29,11 +29,11 @@ public class Spawner : MonoBehaviour {
 		}
 		
 		if (enemiesNum > spawnLimit) {
-			canSpawn = false;
+			return;
 		}
 		if (countDown <= 0f) {
 			Spawn(enemyPrefab, spawnPoint.position);
-			countDown = timeBetweenWaves;
+			countDown = timeBetweenSpawn;
 		}
 		countDown -= Time.deltaTime;
 	}

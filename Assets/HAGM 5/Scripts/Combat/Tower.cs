@@ -5,23 +5,26 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 
-public class Tower : MonoBehaviour {
+public class Tower : MonoBehaviour
+{
 	[Title("Attributes")]
-	public  float fireRate      = 1f;
+	public float fireRate = 1f;
 	private float _fireCountDown = 0f;
-	public  bool  canFire = true;
+	public bool canFire = true;
 
 	[Title("Unity Setup Fields")]
-	
-	public Chase      chase;
-	public GameObject projectile;
-	public Transform  firePoint;
 
-	private void Update() {
+	public Chase chase;
+	public GameObject projectile;
+	public Transform firePoint;
+
+	private void Update ()
+	{
 		if (chase.target == null) return;
 		if (!canFire) return;
 		Debug.DrawLine(transform.position, chase.target.position, Color.red);
-		if (_fireCountDown <= 0f) {
+		if (_fireCountDown <= 0f)
+		{
 			Shoot();
 			_fireCountDown = 1f / fireRate;
 		}
@@ -29,10 +32,11 @@ public class Tower : MonoBehaviour {
 		_fireCountDown -= Time.deltaTime;
 	}
 
-	private void Shoot() {
+	private void Shoot ()
+	{
 		GameObject bulletGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
-		Projectile bullet   = bulletGO.GetComponent<Projectile>();
-		AudioManager.PlaySfx("Shoot");
+		Projectile bullet = bulletGO.GetComponent<Projectile>();
+		AudioManager.PlaySfx("Shoot", UnityEngine.Random.Range(.9f, 1.1f), .3f);
 
 		bullet.Seek(chase.target);
 	}

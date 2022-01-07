@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Modules.UnityMathematics.Editor;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;

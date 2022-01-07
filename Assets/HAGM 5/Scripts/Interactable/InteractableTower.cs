@@ -9,7 +9,8 @@ public class InteractableTower : InteractableGameElement
 {
 	[Title("References")]
 	[SerializeField] private Tower m_tower;
-	public SpriteRenderer spriteRenderer;
+	public SpriteRenderer spriteRenderer => m_spriteRenderers[0];
+	[SerializeField] private SpriteRenderer[] m_spriteRenderers;
 	[SerializeField] private BoxCollider m_boxCollider;
 	[SerializeField] private NavMeshObstacle m_navMeshObstacle;
 
@@ -35,7 +36,7 @@ public class InteractableTower : InteractableGameElement
 	}
 
 	private TowerEntity m_towerEntity;
-	public void OnPlaced()
+	public void OnPlaced ()
 	{
 		m_tower.canFire = true;
 		m_interactable = true;
@@ -49,7 +50,7 @@ public class InteractableTower : InteractableGameElement
 	public void SetupTower ( TowerEntity tower )
 	{
 		m_towerEntity = tower;
-	}	
+	}
 
 	protected override void Interact ()
 	{
@@ -83,11 +84,13 @@ public class InteractableTower : InteractableGameElement
 
 	public void SetGhostMode ()
 	{
-		spriteRenderer.material.SetFloat("_GhostBlend", m_ghostBlendValue);
+		foreach (SpriteRenderer spriteRenderer in m_spriteRenderers)
+			spriteRenderer.material.SetFloat("_GhostBlend", m_ghostBlendValue);
 	}
 
 	public void RemoveGhostMode ()
 	{
-		spriteRenderer.material.SetFloat("_GhostBlend", m_noGhostBlendValue);
+		foreach (SpriteRenderer spriteRenderer in m_spriteRenderers)
+			spriteRenderer.material.SetFloat("_GhostBlend", m_noGhostBlendValue);
 	}
 }

@@ -67,11 +67,12 @@ public class AudioManager : Singleton<AudioManager>
 			Debug.Log("AudioManager : Main / KeyNotFound : " + soundName);
 	}
 
-	public static void PlaySfx ( string soundName, float pitch = 1f)
+	public static void PlaySfx ( string soundName, float pitch = 1f, float volume = 1f)
 	{
 		if (Instance.m_sfxDictionary.ContainsKey(soundName))
 		{
 			Instance.m_soundAudioSource.pitch = pitch;
+			Instance.m_soundAudioSource.volume = volume;
 			Instance.m_soundAudioSource.PlayOneShot(Instance.m_sfxDictionary[soundName]);
 		}
 		else

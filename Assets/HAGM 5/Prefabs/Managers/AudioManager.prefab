@@ -178,10 +178,14 @@ MonoBehaviour:
   m_ambientSource: {fileID: 832040075343436911}
   m_soundAudioSource: {fileID: 6378837731313972311}
   m_audioList:
-  - name: MainTheme
+  - name: MenuTheme
     audioClip: {fileID: 8300000, guid: 643f6f002f92f404ab3210023084aa05, type: 3}
   - name: AmbientTrack
     audioClip: {fileID: 8300000, guid: 7139917d4aeba3a4aaa63dc1b9257abc, type: 3}
+  - name: EndTheme
+    audioClip: {fileID: 8300000, guid: 7c133fbd49581e44ab14d0d79653c694, type: 3}
+  - name: GameTheme
+    audioClip: {fileID: 8300000, guid: bc1d950be9def11459793d3bbfb2d212, type: 3}
   m_sfxList:
   - name: Bop
     audioClip: {fileID: 8300000, guid: 4ba3958a0e4df294e9fc337bf8a8e35e, type: 3}
