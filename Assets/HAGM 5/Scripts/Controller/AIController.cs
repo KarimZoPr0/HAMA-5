@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -17,7 +18,7 @@ public class AIController : MonoBehaviour
 	public float chaseDistance;
 
 	[Title("Wander Settings")]
-	public Bounds boundsBox;
+	public Bounds bounds;
 
 	[Title("Patrol Settings")]
 	private List<Transform> patrolPoints;
@@ -27,15 +28,16 @@ public class AIController : MonoBehaviour
 	public float timeBetweenAttacks = 1f;
 	[HideIf("canAttackFortress", false)]
 	public float slowDown;
-	public bool canAttackFortress = false;
+	public bool  canAttackFortress  = false;
+	public float radiusAroundTarget = 2f;
 
 	private float timeSinceLastAttack = 0f;
 
 	public bool randomSequence = false;
 
-
-	private NavMeshAgent agent;
-	private Vector3 targetPos;
+	private bool           hasCovered = false;
+	private NavMeshAgent   agent;
+	private Vector3        targetPos;
 	private BehaviourState currentState = BehaviourState.none;
 
 	private PatrolPath _patrolPath;
@@ -47,7 +49,7 @@ public class AIController : MonoBehaviour
 		agent = GetComponent<NavMeshAgent>();
 		m_oldPos = transform.position;
 	}
-
+	
 	private void Start ()
 	{
 		if (canAttackFortress)
@@ -100,14 +102,14 @@ public class AIController : MonoBehaviour
 				}
 				else
 				{
-					if (!canAttack)
-					{
-						targetPos = target.transform.position;
+					if (!canAttack && !hasCovered){
+						hasCovered = true;
+						targetPos  = target.transform.position + Random.onUnitSphere * radiusAroundTarget;
+						
 						agent.SetDestination(targetPos);
 					}
 					if (agent.isStopped || canAttack)
 					{
-
 						if (timeSinceLastAttack <= 0)
 						{
 							Attack();
@@ -171,13 +173,12 @@ public class AIController : MonoBehaviour
 
 	private void FindWanderTarget ()
 	{
-		targetPos = GetRandomPoint();
+		targetPos = GetRandomPoint(bounds);
 		agent.SetDestination(targetPos);
 		agent.isStopped = false;
 	}
 
-	Vector3 GetRandomPoint ()
-	{
+	Vector3 GetRandomPoint (Bounds boundsBox) {
 		float randomX = Random.Range(-boundsBox.extents.x + agent.radius + boundsBox.center.x, boundsBox.extents.x - agent.radius);
 		float randomZ = Random.Range(-boundsBox.extents.z + agent.radius + boundsBox.center.z, boundsBox.extents.z - agent.radius);
 		return new Vector3(randomX, transform.position.y, randomZ);
@@ -254,11 +255,15 @@ public class AIController : MonoBehaviour
 	private void OnDrawGizmosSelected ()
 	{
 		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireCube(boundsBox.center, boundsBox.size);
+		Gizmos.DrawWireCube(bounds.center, bounds.size);
 		Gizmos.color = Color.red;
 		Gizmos.DrawSphere(targetPos, 0.2f);
 		Gizmos.color = Color.blue;
 		Gizmos.DrawWireSphere(transform.position, chaseDistance);
 	}
 
+	private void OnDrawGizmos() {
+		Gizmos.color = Color.red;
+		Gizmos.DrawSphere(targetPos, .2f);
+	}
 }

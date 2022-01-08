@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour {
+public class Spawner : Singleton<Spawner> {
 	public Transform enemyPrefab;
 	
 	public Transform spawnPoint;
@@ -16,9 +16,11 @@ public class Spawner : MonoBehaviour {
 	public int   spawnLimit       = 10;
 	public float timeBetweenSpawn = 2f;
 	
-	private  int   enemiesNum = 0;
+	public  int   enemiesNum = 0;
 	private float countDown  = 2f;
 	private int   waveNum = 1;
+	
+	
 	
 
 	private void Update() {

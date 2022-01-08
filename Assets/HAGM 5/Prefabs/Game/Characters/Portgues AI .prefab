@@ -231,14 +231,15 @@ MonoBehaviour:
   initialState: 2
   target: {fileID: 0}
   chase: {fileID: 0}
-  chaseDistance: 4
-  boundsBox:
+  chaseDistance: 8
+  bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 10, y: 10, z: 10}
+    m_Extent: {x: 0, y: 0, z: 0}
   damageDealer: {fileID: 214333512560909600}
   timeBetweenAttacks: 1
   slowDown: 0
   canAttackFortress: 1
+  radiusAroundTarget: 3
   randomSequence: 0
   m_animatorArray:
   - {fileID: 4961356820774301706}
@@ -528,6 +529,30 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114676770428618626, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.16892955
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676770428618626, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224312601019518054, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 224312601019518054, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59798557
+      objectReference: {fileID: 0}
+    - target: {fileID: 224312601019518054, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224312601019518054, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.44
+      objectReference: {fileID: 0}
     - target: {fileID: 224482805754970542, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -539,6 +564,14 @@ PrefabInstance:
     - target: {fileID: 224482805754970542, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224482805754970542, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224482805754970542, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 224482805754970542, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

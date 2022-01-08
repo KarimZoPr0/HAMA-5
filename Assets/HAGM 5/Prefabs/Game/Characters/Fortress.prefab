@@ -440,21 +440,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: HPMeter
       objectReference: {fileID: 0}
-    - target: {fileID: 114217077654482236, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
+    - target: {fileID: 224312601019518054, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 51.79
       objectReference: {fileID: 0}
-    - target: {fileID: 114676770428618626, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
-      propertyPath: m_Color.a
-      value: 1
+    - target: {fileID: 224312601019518054, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114676770428618626, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114676770428618626, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
-      propertyPath: m_Color.r
-      value: 0.70223117
+    - target: {fileID: 224312601019518054, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -8.73
       objectReference: {fileID: 0}
     - target: {fileID: 224482805754970542, guid: d2403015f9f9ed842838f86b1e3fbed9, type: 3}
       propertyPath: m_Pivot.x
